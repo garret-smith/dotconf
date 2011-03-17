@@ -81,7 +81,7 @@ endif " has("autocmd")
 syntax on
 
 set number
-set lz
+"set lz
 set nowrap
 set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ " what to show when I hit :set list
 set so=3 " Keep n lines (top/bottom) for scope
