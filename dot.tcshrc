@@ -1,0 +1,177 @@
+
+# environment setup
+
+umask 22
+
+setenv EDITOR	vim
+setenv PAGER	less
+setenv BLOCKSIZE	K
+
+setenv JBOSS_HOME /usr/local/jboss4
+setenv JAVA_HOME /usr/local/diablo-jdk1.6.0
+setenv PYTHONPATH ~/lib/python
+
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/games $HOME/bin /usr/local/sbin /usr/local/kde4/bin /usr/local/bin)
+
+# bindkeys
+
+bindkey -v
+
+bindkey " " magic-space
+bindkey ^[[H beginning-of-line		#home
+bindkey ^[[F end-of-line		#end
+
+bindkey ^? delete-char			#delete
+bindkey ^[[3~ delete-char		#delete for x
+
+bindkey ^[[T history-search-backward	#F8
+bindkey ^[[19~ history-search-backward  #F8 for x
+
+bindkey -s [11~ "\!:1 "	#F1
+bindkey -s [12~ "\!:2 "	#F2
+bindkey -c [13~ 'complete `last`'	#F3
+
+# ESC-left-arrow : go to beginning of left word.
+# The second version is used to fix a strange bug where the binding
+# stops working after some usage. Did not manage to recreate.
+bindkey ^[^[[D vi-word-back          # not freebsd specific
+bindkey	   OD vi-word-back
+
+# ESC-right-arrow : go to beginning of right word.
+# The second version is used to fix a strange bug where the binding
+# stops working after some usage. Did not manage to recreate.
+bindkey ^[^[[C vi-word-fwd		# also not freebsd specific
+bindkey	   OC vi-word-fwd
+
+# command completions
+
+set noglob
+complete cd         p/1/d/	  # Directories only
+complete chdir      p/1/d/
+complete pushd      p/1/d/
+complete popd       p/1/d/
+
+complete which      n/*/c/
+
+complete unset      n/*/s/
+complete alias      p/1/a/	  # only aliases are valid
+complete unalias    n/*/a/
+
+complete -%*	c/%/j/	          # fill in the jobs builtin
+complete {fg,bg,stop}       c/%/j/ p/1/"(%)"//
+
+complete bunzip2    'p/*/f:*.bz2/'
+complete bzip2      'n/-9/f:^*.bz2/' 'n/-d/f:*.bz2/'
+
+complete unsetenv   n/*/e/
+
+complete man	    n@1@'`\ls -1 /usr/man/man1 | sed s%\\.1.\*\$%%`'@ \
+		    n@2@'`\ls -1 /usr/man/man2 | sed s%\\.2.\*\$%%`'@ \
+		    n@3@'`\ls -1 /usr/man/man3 | sed s%\\.3.\*\$%%`'@ \
+		    n@4@'`\ls -1 /usr/man/man4 | sed s%\\.4.\*\$%%`'@ \
+		    n@5@'`\ls -1 /usr/man/man5 | sed s%\\.5.\*\$%%`'@ \
+		    n@6@'`\ls -1 /usr/man/man6 | sed s%\\.6.\*\$%%`'@ \
+		    n@7@'`\ls -1 /usr/man/man7 | sed s%\\.7.\*\$%%`'@ \
+		    n@8@'`\ls -1 /usr/man/man8 | sed s%\\.8.\*\$%%`'@ \
+    n@9@'`[ -r /usr/man/man9 ] && \ls -1 /usr/man/man9 | sed s%\\.9.\*\$%%`'@ \
+    n@0@'`[ -r /usr/man/man0 ] && \ls -1 /usr/man/man0 | sed s%\\.0.\*\$%%`'@ \
+  n@new@'`[ -r /usr/man/mann ] && \ls -1 /usr/man/mann | sed s%\\.n.\*\$%%`'@ \
+  n@old@'`[ -r /usr/man/mano ] && \ls -1 /usr/man/mano | sed s%\\.o.\*\$%%`'@ \
+n@local@'`[ -r /usr/man/manl ] && \ls -1 /usr/man/manl | sed s%\\.l.\*\$%%`'@ \
+n@public@'`[ -r /usr/man/manp ]&& \ls -1 /usr/man/manp | sed s%\\.p.\*\$%%`'@ \
+		c/-/"(- f k P s t)"/ n/-f/c/ n/-k/x:'<keyword>'/ n/-P/d/ \
+		N@-P@'`\ls -1 $:-1/man? | sed s%\\..\*\$%%`'@ n/*/c/
+
+complete gzcat      c/--/"(force help license quiet version)"/ \
+		    c/-/"(f h L q V -)"/ n/*/f:*.{gz,Z,z,zip}/
+complete gzip       c/--/"(stdout to-stdout decompress uncompress \
+		    force help list license no-name quiet recurse \
+		    suffix test verbose version fast best)"/ \
+		    c/-/"(c d f h l L n q r S t v V 1 2 3 4 5 6 7 8 9 -)"/\
+		    n/{-S,--suffix}/x:'<file_name_suffix>'/ \
+		    n/{-d,--{de,un}compress}/f:*.{gz,Z,z,zip,taz,tgz}/ \
+		    N/{-d,--{de,un}compress}/f:*.{gz,Z,z,zip,taz,tgz}/ \
+		    n/*/f:^*.{gz,Z,z,zip,taz,tgz}/
+complete {gunzip,ungzip} c/--/"(stdout to-stdout force help list license \
+		    no-name quiet recurse suffix test verbose version)"/ \
+		    c/-/"(c f h l L n q r S t v V -)"/ \
+		    n/{-S,--suffix}/x:'<file_name_suffix>'/ \
+		    n/*/f:*.{gz,Z,z,zip,taz,tgz}/
+
+
+complete vim	'p/*/f:^*.{class,o}/'
+
+unset noglob
+
+# tcsh set's
+
+set time=10
+set autocorrect
+set autoexpand
+set autolist=ambiguous
+set complete=enhance
+set correct=all
+set histdup=erase
+set matchbeep=nomatch
+set nobeep
+
+unset autologout
+
+set history=5000
+set savehist=(5000 merge)
+
+#set prompt='\
+#%B%n%b@%U%m%u %S%/%s\
+#%@ %# '
+
+set prompt=' '
+set prompt2="%R?"
+set prompt3="CORRECT> %B%R%b (y|n|e)?"
+
+set inputmode=insert
+set symlinks=chase
+set listjobs
+set printexitvalue
+set rmstar
+set fignore=(.o,.class)
+
+set implicitcd
+
+# aliases
+
+set echo_style=both
+alias sethead 'echo -n "\033]2;\!*\007"'
+
+if($?DISPLAY != 0) then
+#	alias postcmd 'sethead "${PWD}"'
+	alias cwdcmd 'sethead $cwd'
+endif
+
+alias -		cd -
+alias ..	cd ..
+alias ...	cd ../..
+
+alias ls	'ls -FG'
+alias la	'ls -a'
+alias ll	'ls -l'
+alias lt	'ls -ltr'
+alias lla	'ls -la'
+alias lta	'ls -ltra'
+
+alias al	la
+
+alias ff    	'find . -name "*\!{*}*"'
+alias ffe    	'find . -name $*'
+
+alias ffxg	'ff \!:1 | xargs grep \!:2-*'
+
+alias last	'\ls -1tr | tail -n 1'
+
+alias cpuhog	'echo " %CPU    CPU Time     Elapsed PID     Nice   User Command" ; ps -Ao "pcpu,time,etime,pid,nice,user,comm" | grep -v root | sort -nr | head'
+alias memhog	'echo "VSZ        Elapsed User     Command" ; ps -Ao "vsz,etime,user,comm" | sort -nr | head'
+
+alias gc	'git checkout'
+alias gs	'git status'
+alias gl	'git log'
+alias gd	'git diff'
+
