@@ -194,53 +194,18 @@ Mrxvt.macro.Ctrl+Shift+c:		UseFifo 1
 Mrxvt.macro.Add+Ctrl+Shift+c:		NewTab "mrxvt Console" \!cat >> /tmp/.mrxvt-%P && echo "UseFifo 0" >> /tmp/.mrxvt-%P
 Mrxvt.macro.Add+Ctrl+Shift+c:		ToggleHold -7
 
-# External programs. In keeping with the Unix "minimalist" philosophy, we don't
-# define these shortcuts by default.
-#
-# Remember commands start in the current directory of the active tab by
-# default. Also prefixing commands with '!' will start them in a shell (so when
-# you're done, the tab won't close, and you'll have a shell prompt).
-#
-# As of mrxvt-0.5.0, new tabs will be opened in the current directory. So the
-# shortcut for Vim below is extremely useful :).
 
 Mrxvt.macro.Ctrl+Shift+F1:		NewTab "man mrxvt" man mrxvt
-# Mrxvt.macro.Ctrl+Shift+F2:		NewTab !vim
-# Mrxvt.macro.Ctrl+Shift+F3:		NewTab !mutt
-
-# These are the keyboard combinations compatible with mrxvt 0.4x, and
-# they may be useful for some applications like mc. Thanks to Dimitri
-# AT sun.com for the information:
-
-# Mrxvt.macro.Ctrl+Home:            Str \e\133\067\136
-# Mrxvt.macro.Ctrl+End:             Str \e\133\070\136
-# Mrxvt.macro.Shift+Home:           Str \e\133\067\044
-# Mrxvt.macro.Shift+End:            Str \e\133\070\044
-# Mrxvt.macro.Shift+F1:             Str \e\133\062\063\176
-# Mrxvt.macro.Shift+F2:             Str \e\133\062\064\176
-# Mrxvt.macro.Shift+F3:             Str \e\133\062\065\176
-# Mrxvt.macro.Shift+F4:             Str \e\133\062\066\176
-# Mrxvt.macro.Shift+F5:             Str \e\133\062\070\176
-# Mrxvt.macro.Shift+F6:             Str \e\133\062\071\176
-# Mrxvt.macro.Shift+F7:             Str \e\133\063\061\176
-# Mrxvt.macro.Shift+F8:             Str \e\133\063\062\176
-# Mrxvt.macro.Shift+F9:             Str \e\133\063\063\176
-# Mrxvt.macro.Shift+F10:            Str \e\133\063\064\176
-# Mrxvt.macro.Alt+Return:           Str \e\012
-
 
 Mrxvt.macro.Alt+Left: Str OD
 Mrxvt.macro.Alt+Right: Str OC
 
-#Mrxvt.geometry: 100x31+0+0
-Mrxvt.foreground: black
-Mrxvt.reverseVideo: True
-#Mrxvt.textShadow: black
-Mrxvt.transparent: False
-#Mrxvt.shading: 75
+Mrxvt.foreground: white
+Mrxvt.background: black
+Mrxvt.transparent: True
+Mrxvt.shading: 80
 Mrxvt.showMenu: False
-Mrxvt.transparentMenubar: False
-#Mrxvt.bottomTabbar: True
+Mrxvt.transparentMenubar: True
 Mrxvt.transparentTabbar: True
 Mrxvt.tabBackground: #000000
 Mrxvt.tabForeground: white
@@ -249,7 +214,7 @@ Mrxvt.itabForeground: #808080
 Mrxvt.autohideTabbar: True
 Mrxvt.maxTabWidth: 50
 Mrxvt.syncTabTitle: True
-Mrxvt.transparentScrollbar: False
+Mrxvt.transparentScrollbar: True
 Mrxvt.scrollbarStyle: plain
 Mrxvt.scrollbarThickness: 10
 Mrxvt.scrollbarFloating: True
@@ -258,19 +223,39 @@ Mrxvt.troughColor: #000000
 Mrxvt.saveLines: 5000
 Mrxvt.appIcon: /usr/local/share/pixmaps/mrxvt.xpm
 
+#Mrxvt.ufBackground: yellow
+#Mrxvt.backgroundFade: 50
+
 Mrxvt.backspaceKey: "^H"
 Mrxvt.cursorColor: #999999
 Mrxvt.scrollTtyOutputInhibit: True
 
-#Mrxvt.font: -xos4-terminus-medium-r-normal-*-12-120-72-72-c-80-iso8859-1
-#Mrxvt.boldFont: -xos4-terminus-bold-r-normal-*-12-120-72-72-c-80-iso8859-1
+#Mrxvt.font: -*-proggyopti-*-*-*-*-11-*-96-96-*-*-*-*
+#Mrxvt.boldFont: -*-proggyopti-*-*-*-*-11-*-96-96-*-*-*-*
 
-Mrxvt.font: -*-proggyopti-*-*-*-*-11-*-96-96-*-*-*-*
-Mrxvt.boldFont: -*-proggyopti-*-*-*-*-11-*-96-96-*-*-*-*
+#Mrxvt.font: -*-montecarlo-medium-*-*-*-*-*-*-*-*-*-*-*
+#Mrxvt.boldFont: -*-montecarlo-bold-*-*-*-*-*-*-*-*-*-*-*
+
+#Mrxvt.font: -*-pixelcarnage monospace-*-*-*-*-*-*-*-*-*-*-*-*
+#Mrxvt.boldFont: -*-pixelcarnage monospace-*-*-*-*-*-*-*-*-*-*-*-*
+
+#Mrxvt.font: -xos4-terminus-medium-r-normal--14-120-72-72-c-60-iso8859-1
+#Mrxvt.boldFont: -xos4-terminus-bold-r-normal--14-120-72-72-c-60-iso8859-1
+Mrxvt.font: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-1
+Mrxvt.font: -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-1
+
+#Mrxvt.font: -nil-profont-medium-r-normal--12-120-72-72-c-60-iso8859-1
+#Mrxvt.boldFont: -nil-profont-medium-r-normal--12-120-72-72-c-60-iso8859-1
 
 Mrxvt.xft: 0
-Mrxvt.xftFont: Andale Mono
-Mrxvt.xftSize: 12
+Mrxvt.xftFont: "Inconsolata"
+#Mrxvt.xftFont: "Source Code Pro"
+Mrxvt.xftSize: 10
 Mrxvt.xftAntialias: 1
+Mrxvt.xftHinting: 1
+Mrxvt.xftAutoHint: 1
+Mrxvt.xftNomFont: 1
+Mrxvt.xftSlowOutput: 1
+#Mrxvt.xftWidth: ultracondensed
 
 # vim: set ts=8 sts=4:

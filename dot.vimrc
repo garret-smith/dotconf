@@ -85,17 +85,18 @@ set number
 set nowrap
 set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ " what to show when I hit :set list
 set so=3 " Keep n lines (top/bottom) for scope
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2 " always show the status line
 
 set showmatch " show matching brackets
 set mat=3 " how many tenths of a second to blink matching brackets for
 set nohlsearch " do not highlight searched for phrases
 set incsearch " BUT do highlight as you type you search phrase
-set nomodeline
+"set nomodeline
 
 set wildmode=longest,list
-set wildignore+=*.class
+set wildignore+=*.class,*.beam
 
 " restore screen after exiting vim
 "set t_ti=7[r[?47h t_te=[?47l8
@@ -187,7 +188,21 @@ set tabline=%!MyTabLine()
 
 set guitablabel=%{GuiTabLabel()}
 
-let Tlist_Inc_Winwidth=0
+function SpcIndent()
+  set tabstop=4
+  set shiftwidth=4
+  set softtabstop=4
+  set expandtab
+endfunction
+
+function TabIndent()
+  set tabstop=8
+  set shiftwidth=8
+  set softtabstop=0
+  set noexpandtab
+endfunction
+
+"let Tlist_Inc_Winwidth=0
 
 " set langmap=s;;
 " set langmap=;z;
@@ -201,16 +216,22 @@ if v:progname =~? "vimdiff"
   colo cust_inkpot
 elseif v:progname =~? "gvim"
   colo ir_black
-  set guifont=-windows-proggysquaresz-medium-r-normal-*-*-80-*-*-c-*-iso8859-1
+  "set guifont=-windows-proggysquaresz-medium-r-normal-*-*-80-*-*-c-*-iso8859-1
+  set guifont="Source Code Pro"
   set guioptions-=m
   set guioptions-=T
-  set guioptions-=r
+  "set guioptions-=r
   set guioptions+=c
 else
   colo cust_inkpot
 endif
 
 let g:erlangFold = 0
+let g:erlangFoldSplitFunction = 0
 let g:erlangHighlightBif = 1
 
+let g:EasyMotion_leader_key = '<Leader>'
+
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
