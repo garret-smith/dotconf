@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="my"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -25,6 +25,11 @@ alias gc="git checkout"
 alias gs="git status"
 alias gl="git log"
 alias gd="git diff"
+
+bindkey -s 'OP' '!:1 '
+bindkey -s 'OQ' '!:2 '
+bindkey -s 'OR' '!:3 '
+bindkey -s 'OS' '!:4 '
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -60,8 +65,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
-PROMPT=' '
-REPORTTIME=5
-ZSH_THEME="ys"
+export PATH=$PATH:/home/gsmith/bin
+export REPORTTIME=5
 
