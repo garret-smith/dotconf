@@ -21,11 +21,6 @@ alias lt="ls -ltr"
 alias lla="ls -la"
 alias lta="ls -ltra"
 
-alias gc="git checkout"
-alias gs="git status"
-alias gl="git log"
-alias gd="git diff"
-
 # F1-F4 bound to retrieve 1st - 4th argument of previous command
 bindkey -s 'OP' '!:1 '
 bindkey -s 'OQ' '!:2 '
