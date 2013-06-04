@@ -26,10 +26,15 @@ alias gs="git status"
 alias gl="git log"
 alias gd="git diff"
 
+# F1-F4 bound to retrieve 1st - 4th argument of previous command
 bindkey -s 'OP' '!:1 '
 bindkey -s 'OQ' '!:2 '
 bindkey -s 'OR' '!:3 '
 bindkey -s 'OS' '!:4 '
+
+# up arrow key search history backward, down arrow key search forward
+bindkey "OA" history-search-backward
+bindkey "OB" history-search-forward
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
