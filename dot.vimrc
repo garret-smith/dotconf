@@ -3,12 +3,12 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 colo solarized
 
-au Filetype html,xml,xsl,erlang source ~/.vim/scripts/closetag.vim
 set backup
 set backupdir=~/.vim/backups
 set wildmode=longest,list
@@ -46,52 +46,12 @@ let g:ctrlp_custom_ignore={'dir': '\v[\/]\.(git|svn)$', 'file': '\v\.(o|png)$'}
 "let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f'}
 
 nmap ; :CtrlPBuffer<CR>
-
 nmap \n :NERDTreeToggle<CR>
+nnoremap Q <nop>
 
-function MyTabLine()
-  let tl = []
-  for i in range(tabpagenr('$'))
-    let s = ""
-    " select the highlighting
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    endif
-
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T'
-
-    " the label is made by MyTabLabel()
-    let s .= '%{MyTabLabel(' . (i + 1) . ')}'
-    call add(tl, s)
-  endfor
-
-  let s = join(tl, "%#TabLine#  ")
-  let s .= '%#TabLineFill#%T'
-
-  return s
-endfunction
-
-function MyTabLabel(tabnr)
-  let buflist = tabpagebuflist(a:tabnr)
-  let s = []
-  for bufnr in buflist
-    let bufnm = substitute(bufname(bufnr), '.*/', '', '')
-    if bufnm =~ "^__"
-      continue
-    endif
-    let modified = ''
-    if getbufvar(bufnr, '&modified') != 0
-      let modified = '*'
-    endif
-    call add(s, bufnr . ":" . bufnm . modified)
-  endfor
-  return a:tabnr . "[" . join(s, ", ") . "]"
-endfunction
-
-" set tabline=%!MyTabLine()
-
-" For FreeBSD, in case they're not in the TERMCAP
-"let &t_ti = "\<Esc>[?47h"
-"let &t_te = "\<Esc>[?47l"
+let os = substitute(system('uname'), "\n", "", "")
+if os == "FreeBSD"
+  let &t_ti = "\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l"
+endif
 

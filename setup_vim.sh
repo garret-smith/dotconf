@@ -50,6 +50,7 @@ popd
 pushd ~/.vim/bundle
   git clone https://github.com/tpope/vim-sensible.git
   git clone https://github.com/tpope/vim-sleuth.git
+  git clone https://github.com/tpope/vim-git.git
   git clone https://github.com/tpope/vim-fugitive.git
   git clone https://github.com/kien/ctrlp.vim.git
   git clone https://github.com/bling/vim-airline
@@ -58,5 +59,18 @@ pushd ~/.vim/bundle
   git clone https://github.com/altercation/vim-colors-solarized.git
   git clone https://github.com/oscarh/vimerl.git
   git clone https://github.com/jnurmine/Zenburn.git
+  #git clone https://github.com/vim-scripts/searchfold.vim.git
+  git clone https://github.com/tpope/vim-markdown.git
+  git clone https://github.com/wesgibbs/vim-irblack.git
+  git clone https://github.com/gregsexton/gitv.git
+popd
+
+TL_DIR=~/.vim/bundle/taglist
+TL_FILE=taglist_46.zip
+mkdir $TL_DIR
+pushd $TL_DIR
+curl http://vim.sourceforge.net/scripts/download_script.php\?src_id\=19574 > $TL_FILE
+unzip $TL_FILE
+rm $TL_FILE
 popd
 
