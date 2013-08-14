@@ -3,10 +3,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-set t_Co=256
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
 colo solarized
 
 set backup
@@ -45,6 +42,10 @@ let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_custom_ignore={'dir': '\v[\/]\.(git|svn)$', 'file': '\v\.(o|png)$'}
 "let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f'}
 
+nmap <leader>gv :Gitv --all<cr>
+nmap <leader>gV :Gitv! --all<cr>
+vmap <leader>gV :Gitv! --all<cr>
+
 nmap ; :CtrlPBuffer<CR>
 nmap \n :NERDTreeToggle<CR>
 nnoremap Q <nop>
@@ -54,4 +55,6 @@ if os == "FreeBSD"
   let &t_ti = "\<Esc>[?47h"
   let &t_te = "\<Esc>[?47l"
 endif
+
+set lazyredraw
 

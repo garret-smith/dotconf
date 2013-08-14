@@ -63,14 +63,7 @@ pushd ~/.vim/bundle
   git clone https://github.com/tpope/vim-markdown.git
   git clone https://github.com/wesgibbs/vim-irblack.git
   git clone https://github.com/gregsexton/gitv.git
+  git clone https://github.com/majutsushi/tagbar.git
 popd
 
-TL_DIR=~/.vim/bundle/taglist
-TL_FILE=taglist_46.zip
-mkdir $TL_DIR
-pushd $TL_DIR
-curl http://vim.sourceforge.net/scripts/download_script.php\?src_id\=19574 > $TL_FILE
-unzip $TL_FILE
-rm $TL_FILE
-popd
 
