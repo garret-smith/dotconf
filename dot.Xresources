@@ -51,6 +51,7 @@ xterm*fadeColor: S_base03
 xterm*cursorColor: S_base1
 xterm*pointerColorBackground: S_base01
 xterm*pointerColorForeground: S_base1
+xterm*locale: true
 
 xterm*color0: S_base02
 xterm*color1: S_red
@@ -69,5 +70,14 @@ xterm*color13: S_violet
 xterm*color14: S_base1
 xterm*color15: S_base3
 
-xterm*font:      -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-1
+xterm*font: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-1
+xterm*boldfont: -xos4-terminus-bold-*-*-*-18-4-*-*-*-*-*-iso8859-1
+xterm*fontdoublesize: false
+xterm*scrollTtyOutput: false
+xterm*multiScroll: true
+xterm*scrollKey: true
+xterm*dynamicColors: true
+
+! xterm*faceName: Source Code Pro
+! xterm*faceSize: 14
 
