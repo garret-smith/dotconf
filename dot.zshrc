@@ -28,8 +28,13 @@ bindkey -s 'OR' '!:3 '
 bindkey -s 'OS' '!:4 '
 
 # up arrow key search history backward, down arrow key search forward
-bindkey "OA" history-beginning-search-backward
-bindkey "OB" history-beginning-search-forward
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey "OA" up-line-or-beginning-search
+
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "OB" down-line-or-beginning-search
 
 zstyle  ':completion:*:*:vim:*:*files' ignored-patterns '*.beam'
 

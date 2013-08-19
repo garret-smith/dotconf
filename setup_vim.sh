@@ -9,8 +9,6 @@ if [[ "$1" == "-h" ]]; then
 fi
 
 if [[ "$1" == "-u" ]]; then
-  mv ~/.vimrc ~/.vimrc_bak
-  cp dot.vimrc ~/.vimrc
   pushd ~/.vim/bundle
     for dir in *; do
         pushd $dir
@@ -23,15 +21,24 @@ fi
 
 if [[ "$1" == "-r" ]]; then
   mv ~/.vim ~/.vim_bak
-  mv ~/.vimrc ~/.vimrc_bak
 fi
 
-if [[ -e ~/.vimrc || -d ~/.vim ]]; then
-  echo "Clear out existing vim configuration (~/.vimrc ~/.vim) first"
-  exit -1
+if [[ -d ~/.vim ]]; then
+  read -p "Delete existing vim configuration dir (~/.vim) and continue?" yn
+  if [[ $yn == "Y" ]] ; then
+    rm -RF ~/.vim
+  else
+    echo "Remove ~/.vim manually and re-run"
+    exit -1
+  fi
 fi
 
-cp dot.vimrc ~/.vimrc
+if [[ ! -e ~/.vimrc ]] ; then
+  DC_DIR=`pwd`
+  pushd ~
+    ln -s $DC_DIR/dot.vimrc .vimrc
+  popd
+fi
 
 mkdir ~/.vim
 mkdir ~/.vim/bundle
