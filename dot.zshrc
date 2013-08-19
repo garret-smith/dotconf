@@ -62,14 +62,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv virtualenvwrapper)
+plugins=(git virtualenv virtualenvwrapper colored-man zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/home/gsmith/bin
+export PATH=$PATH:~/bin
 export REPORTTIME=5
-export JAVA_HOME=/usr/local/openjdk7
 export EDITOR=vim
 
 HISTSIZE=SAVEHIST=10000
@@ -80,4 +79,6 @@ setopt nosharehistory
 setopt histnostore
 
 ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
+
+source ~/.zshrc_local
 
