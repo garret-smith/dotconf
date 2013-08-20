@@ -37,10 +37,8 @@ let g:erlangHighlightBif = 1
 let g:erlangManPath='~/lib/erlang/man'
 let g:erlangCompletionGrep='grep'
 
-let g:ctrlp_by_filename=1
-let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_custom_ignore={'dir': '\v[\/]\.(git|svn)$', 'file': '\v\.(o|png)$'}
-"let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f'}
+let g:ctrlp_clear_cache_on_exit=1
+let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" \)' }
 
 nmap <leader>gv :Gitv --all<cr>
 nmap <leader>gV :Gitv! --all<cr>

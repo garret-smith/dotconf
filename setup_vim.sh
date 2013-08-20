@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 if [[ "$1" == "-h" ]]; then
   echo "$0 [-h] [-r] [-u]"
@@ -71,6 +71,7 @@ pushd ~/.vim/bundle
   git clone https://github.com/wesgibbs/vim-irblack.git
   git clone https://github.com/gregsexton/gitv.git
   git clone https://github.com/majutsushi/tagbar.git
+  git clone https://github.com/mileszs/ack.vim.git
 popd
 
 
