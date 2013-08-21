@@ -72,9 +72,7 @@ plugins=(git virtualenv virtualenvwrapper colored-man zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:~/bin
 export REPORTTIME=5
-export EDITOR=vim
 
 HISTSIZE=SAVEHIST=10000
 setopt incappendhistory
