@@ -21,21 +21,6 @@ alias lt="ls -ltr"
 alias lla="ls -la"
 alias lta="ls -ltra"
 
-# F1-F4 bound to retrieve 1st - 4th argument of previous command
-bindkey -s 'OP' '!:1 '
-bindkey -s 'OQ' '!:2 '
-bindkey -s 'OR' '!:3 '
-bindkey -s 'OS' '!:4 '
-
-# up arrow key search history backward, down arrow key search forward
-autoload -U up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-bindkey "OA" up-line-or-beginning-search
-
-autoload -U down-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "OB" down-line-or-beginning-search
-
 zstyle  ':completion:*:*:vim:*:*files' ignored-patterns '*.beam'
 
 # Set to this to use case-sensitive completion
@@ -67,9 +52,27 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv virtualenvwrapper colored-man zsh-syntax-highlighting)
+plugins=(git virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
+
+source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+
+bindkey -e
+
+# F1-F4 bound to retrieve 1st - 4th argument of previous command
+bindkey -s "${key[F1]}" '!:1 '
+bindkey -s "${key[F2]}" '!:2 '
+bindkey -s "${key[F3]}" '!:3 '
+bindkey -s "${key[F4]}" '!:4 '
+
+# up arrow key search history backward, down arrow key search forward
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "${key[Up]}" up-line-or-beginning-search
+bindkey "${key[Down]}" down-line-or-beginning-search
 
 # Customize to your needs...
 export REPORTTIME=5
@@ -82,6 +85,4 @@ setopt nosharehistory
 setopt histnostore
 
 ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
-
-source ~/.zshrc_local
 
