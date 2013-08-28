@@ -40,6 +40,8 @@ let g:erlangCompletionGrep='grep'
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" \)' }
 
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+
 nmap <leader>gv :Gitv --all<cr>
 nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
@@ -55,4 +57,6 @@ if os == "FreeBSD"
 endif
 
 set lazyredraw
+
+let g:erlang_use_conceal=0
 
