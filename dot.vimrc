@@ -33,9 +33,9 @@ nmap <C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 
-let g:erlangHighlightBif = 1
 let g:erlangManPath='~/lib/erlang/man'
 let g:erlangCompletionGrep='grep'
+let g:erlang_folding=1
 
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" \)' }
