@@ -4,7 +4,7 @@ if [[ "$1" == "-h" ]]; then
   echo "$0 [-h] [-r] [-u]"
   echo "    -h    Print this help"
   echo "    -r    Move current configuration out of the way and Reset"
-  echo "    -u    Update ~/.vimrc and plugins in ~/.vim/bundle"
+  echo "    -u    Update plugins in ~/.vim/bundle"
   exit
 fi
 
@@ -72,6 +72,7 @@ pushd ~/.vim/bundle
   git clone https://github.com/gregsexton/gitv.git
   git clone https://github.com/majutsushi/tagbar.git
   git clone https://github.com/mileszs/ack.vim.git
+  git clone https://github.com/ervandew/supertab.git
 popd
 
 
