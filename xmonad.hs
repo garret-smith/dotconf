@@ -19,7 +19,6 @@ import XMonad.Layout.Spiral
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
-import XMonad.Hooks.ICCCMFocus
 
 import XMonad.Util.Themes
 
@@ -29,7 +28,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "mrxvt"
+myTerminal      = "xterm"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -252,13 +251,6 @@ myManageHook = composeAll
 --
 myEventHook = mempty
 
-------------------------------------------------------------------------
--- Status bars and logging
-
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook = takeTopFocus
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -302,6 +294,5 @@ defaults = defaultConfig {
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
         startupHook        = myStartupHook
     }
