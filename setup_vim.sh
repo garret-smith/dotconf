@@ -45,6 +45,7 @@ mkdir ~/.vim/bundle
 mkdir ~/.vim/backups
 mkdir ~/.vim/autoload
 mkdir ~/.vim/scripts
+mkdir ~/.vim/undodir
 
 pushd ~/.vim/autoload
   curl https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim > pathogen.vim
@@ -73,6 +74,7 @@ pushd ~/.vim/bundle
   git clone https://github.com/majutsushi/tagbar.git
   git clone https://github.com/mileszs/ack.vim.git
   git clone https://github.com/ervandew/supertab.git
+  git clone https://github.com/mbbill/undotree.git
 popd
 
 
