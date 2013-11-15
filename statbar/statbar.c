@@ -43,8 +43,10 @@ int main(int argc, char ** argv) {
 
 	int battery;
 
-	int cputemp;
-	float fcputemp;
+	int tz0temp;
+	float ftz0temp;
+	int tz1temp;
+	float ftz1temp;
 
 	long totalcputime;
 
@@ -93,12 +95,16 @@ int main(int argc, char ** argv) {
 			cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
 		memmove(cputime1, cputime2, sizeof(cputime1));
 
-		getsysctl("dev.amdtemp.0.sensor0.core0", &cputemp, sizeof(cputemp));
-		fcputemp = ((float)cputemp - 2732.0) / 10.0;
-		printf("      CPU Temp: %.1fC", fcputemp);
+		getsysctl("hw.acpi.thermal.tz0.temperature", &tz0temp, sizeof(tz0temp));
+		ftz0temp = ((float)tz0temp - 2732.0) / 10.0;
+		printf("      Temp0: %.1fC", ftz0temp);
+
+		getsysctl("hw.acpi.thermal.tz1.temperature", &tz1temp, sizeof(tz1temp));
+		ftz1temp = ((float)tz1temp - 2732.0) / 10.0;
+		printf("      Temp1: %.1fC", ftz1temp);
 
 		getsysctl("net.inet.tcp.stats", &tcpstat, sizeof(tcpstat));
-		printf("      Packets in: %d    Packets out: %d", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
+		printf("      Packets in: %lu    Packets out: %lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
 		packets_in = tcpstat.tcps_rcvtotal;
 		packets_out = tcpstat.tcps_sndtotal;
 
