@@ -74,6 +74,9 @@ zle -N down-line-or-beginning-search
 bindkey "${key[Up]}" up-line-or-beginning-search
 bindkey "${key[Down]}" down-line-or-beginning-search
 
+autoload -U select-word-style
+select-word-style whitespace
+
 # Customize to your needs...
 export REPORTTIME=5
 
