@@ -47,11 +47,12 @@ vmap <leader>gV :Gitv! --all<cr>
 nmap ; :CtrlPBuffer<CR>
 nmap \n :NERDTreeToggle<CR>
 nnoremap Q <nop>
+cabbrev qt :tabclose<CR>
 
 let os = substitute(system('uname'), "\n", "", "")
 if os == "FreeBSD"
-  let &t_ti = "\<Esc>[?47h"
-  let &t_te = "\<Esc>[?47l"
+  "let &t_ti = "\<Esc>[?47h"
+  "let &t_te = "\<Esc>[?47l"
 endif
 
 set lazyredraw
