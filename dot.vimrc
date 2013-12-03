@@ -64,3 +64,6 @@ if has("persistent_undo")
   set undofile
 endif
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+
