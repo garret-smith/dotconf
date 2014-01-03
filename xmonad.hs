@@ -16,9 +16,12 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.Spiral
+import XMonad.Layout.Circle
+import XMonad.Layout.Grid
+import XMonad.Layout.Magnifier
 
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.FadeWindows
 
 import XMonad.Util.Themes
 
@@ -36,7 +39,7 @@ myFocusFollowsMouse = True
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth   = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -58,7 +61,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#333333"
+myNormalBorderColor  = "#222222"
 myFocusedBorderColor = "#cccccc"
 
 ------------------------------------------------------------------------
@@ -188,21 +191,18 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| noBorders mytabs)
+myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| Circle ||| magnify Grid ||| noBorders mytabs)
   where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = toRational (2/(1+sqrt(5)::Double))
-
-     -- Percent of screen to increment by when resizing panes
-     delta   = 5/100
+     tiled   = Tall nmaster delta ratio -- default tiling algorithm partitions the screen into two panes
+     nmaster = 1 -- The default number of windows in the master pane
+     ratio   = toRational (2/(1+sqrt(5)::Double)) -- Default proportion of screen occupied by master pane
+     delta   = 5/100 -- Percent of screen to increment by when resizing panes
 
      mytabs = tabbed shrinkText (theme smallClean)
+
+     magnify = magnifiercz 1.2
+
+myLogHook = composeAll [transparency 0.15, isUnfocused --> transparency 0.3]
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -239,18 +239,6 @@ myManageHook = composeAll
     , className =? "Graph.py"       --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
-
-------------------------------------------------------------------------
--- Event handling
-
--- * EwmhDesktops users should change this to ewmhDesktopsEventHook
---
--- Defines a custom handler function for X Events. The function should
--- return (All True) if the default handler is to be run afterwards. To
--- combine event hooks use mappend or mconcat from Data.Monoid.
---
-myEventHook = mempty
-
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -293,6 +281,7 @@ defaults = defaultConfig {
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        startupHook        = myStartupHook
+        startupHook        = myStartupHook,
+        logHook            = fadeWindowsLogHook myLogHook,
+        handleEventHook    = fadeWindowsEventHook
     }
