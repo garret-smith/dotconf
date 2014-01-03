@@ -22,6 +22,7 @@ import XMonad.Layout.Magnifier
 
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.FadeWindows
+import XMonad.Hooks.FadeInactive
 
 import XMonad.Util.Themes
 
@@ -93,11 +94,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
 
+    -- Increase / decrease magnification effect (equal is unshifted '+')
+    , ((modm .|. controlMask, xK_equal ), sendMessage MagnifyMore)
+    , ((modm .|. controlMask, xK_minus ), sendMessage MagnifyLess)
+
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
+
+    -- Move focus to the previous window
+    , ((modm .|. shiftMask, xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the previous window
     , ((modm,               xK_k     ), windows W.focusUp  )
@@ -191,7 +199,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| Circle ||| magnify Grid ||| noBorders mytabs)
+myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| magnify Circle ||| magnify Grid ||| noBorders mytabs)
   where
      tiled   = Tall nmaster delta ratio -- default tiling algorithm partitions the screen into two panes
      nmaster = 1 -- The default number of windows in the master pane
@@ -200,9 +208,9 @@ myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| Circle ||| magnify Gri
 
      mytabs = tabbed shrinkText (theme smallClean)
 
-     magnify = magnifiercz 1.2
+     magnify = magnifiercz 1.3
 
-myLogHook = composeAll [transparency 0.15, isUnfocused --> transparency 0.3]
+myLogHook = composeAll [transparency 0.15, isUnfocusedOnCurrentWS --> transparency 0.3]
 
 ------------------------------------------------------------------------
 -- Window rules:
