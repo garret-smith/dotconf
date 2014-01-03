@@ -1,7 +1,35 @@
 
-execute pathogen#infect()
-syntax on
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-sleuth'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'kien/ctrlp.vim'
+Bundle 'bling/vim-airline'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'sanmiguel/vimerl'
+Bundle 'jnurmine/Zenburn'
+Bundle 'tpope/vim-markdown'
+Bundle 'wesgibbs/vim-irblack'
+Bundle 'gregsexton/gitv'
+Bundle 'majutsushi/tagbar'
+Bundle 'mileszs/ack.vim'
+Bundle 'ervandew/supertab'
+Bundle 'mbbill/undotree'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'fxn/vim-monochrome'
+
 filetype plugin indent on
+syntax on
 
 set background=dark
 colo solarized
