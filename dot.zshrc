@@ -87,12 +87,12 @@ setopt histignorealldups
 setopt nosharehistory
 setopt histnostore
 
-unsetopt correctall
-setopt ALWAYS_TO_END
-zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path ~/.zsh/cache
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' completer _complete _ignored _files
+#unsetopt correctall
+#setopt ALWAYS_TO_END
+#zstyle ':completion::complete:*' use-cache on
+#zstyle ':completion::complete:*' cache-path ~/.zsh/cache
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+#zstyle ':completion:*' completer _complete _ignored _files
 
 ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 
