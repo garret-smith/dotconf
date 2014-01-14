@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+PIDFILE=~/.wpchanger.pid
+
+if [[ $1 == "stop" ]]; then
+	kill `cat $PIDFILE`
+	rm $PIDFILE
+	exit
+fi
+
+echo $$ > $PIDFILE
+while (( 1 )) { wallpaper; sleep 3600; }
+
