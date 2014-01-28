@@ -52,7 +52,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colored-man compleat fasd git virtualenv virtualenvwrapper)
+plugins=(colored-man compleat fasd git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,12 +87,8 @@ setopt histignorealldups
 setopt nosharehistory
 setopt histnostore
 
-#unsetopt correctall
-#setopt ALWAYS_TO_END
-#zstyle ':completion::complete:*' use-cache on
-#zstyle ':completion::complete:*' cache-path ~/.zsh/cache
-#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-#zstyle ':completion:*' completer _complete _ignored _files
+setopt correct
+setopt correctall
 
 ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 

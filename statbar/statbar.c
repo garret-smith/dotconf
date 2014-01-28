@@ -86,13 +86,18 @@ int main(int argc, char ** argv) {
 		*/
 
 		getsysctl("kern.cp_time", cputime2, sizeof(cputime2));
+		// 5 entries: user nice sys interrupt idle
 		for(i=0; i<CPUSTATES; i++)
 			cputimediff[i] = cputime2[i] - cputime1[i];
 		totalcputime = sumcputime(cputimediff);
 		for(i=0; i<CPUSTATES; i++)
 			cpupercent[i] = (float)cputimediff[i] / (float)totalcputime * 100.0;
-		printf("^fg(green)User:%6.2f%%^fg()   Nice:%6.2f%%   ^fg(blue)Sys:%6.2f%%^fg()   Int:%6.2f%%   ^fg(red)Idle:%6.2f%%^fg()",
-			cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
+		float worktime = cpupercent[0] + cpupercent[1] + cpupercent[2] + cpupercent[3];
+		printf("%3.0f%%  ", worktime);
+		//printf("^ca(1, \"echo user ^fg(green)nice ^fg(blue)sys ^fg(red)int\")");
+		//printf("^ca(1, echo) ");
+		printf("^r(1x10)^r(%.0fx8)^fg(green)^r(%.0fx8)^fg(blue)^r(%.0fx8)^fg(red)^r(%0.fx8)^p(%.0f)^fg()^r(1x10)", cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
+		//printf(" ^ca()");
 		memmove(cputime1, cputime2, sizeof(cputime1));
 
 		getsysctl("hw.acpi.thermal.tz0.temperature", &tz0temp, sizeof(tz0temp));

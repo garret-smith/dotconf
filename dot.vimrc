@@ -1,13 +1,13 @@
 
+set nocompatible
+
 filetype off
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-
-Bundle 'tpope/vim-sensible'
+"Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-sleuth'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
@@ -21,27 +21,50 @@ Bundle 'jnurmine/Zenburn'
 Bundle 'tpope/vim-markdown'
 Bundle 'wesgibbs/vim-irblack'
 Bundle 'gregsexton/gitv'
-Bundle 'majutsushi/tagbar'
-Bundle 'mileszs/ack.vim'
-" Bundle 'ervandew/supertab'
+"Bundle 'majutsushi/tagbar'
+"Bundle 'mileszs/ack.vim'
 Bundle 'mbbill/undotree'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'fxn/vim-monochrome'
+Bundle 'lastpos.vim'
 
 filetype plugin indent on
-syntax on
 
+syntax on
 set background=dark
 colo solarized
 
 set backup
 set backupdir=~/.vim/backups
+
+set wildmenu
 set wildmode=longest,list
 set wildignore+=*/.git/*,*.class,*.beam
 set shell=zsh
-set so=3
 set nowrap
-set number
+"set number
+
+set backspace=indent,eol,start
+"set complete-=i
+set showmatch
+set smarttab
+set shiftround
+
+set ttimeout
+set ttimeoutlen=50
+
+set incsearch
+set laststatus=2
+set showcmd
+
+set scrolloff=5
+set sidescrolloff=5
+set display+=lastline
+
+set autoread
+set fileformats+=mac
+
+set history=1000
 
 nmap j gj
 nmap k gk
@@ -64,6 +87,9 @@ nmap <C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 let g:erlangManPath='~/lib/erlang/man'
 let g:erlangCompletionGrep='grep'
 let g:erlang_folding=1
+let g:erlangHighlightBif=1
+let g:erlangFoldSplitFunction=1
+let g:erlangCheckFile='~/.vim/bundle/vimerl/compiler/erlang_check.erl'
 
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" \)' }
@@ -76,12 +102,6 @@ nmap ; :CtrlPBuffer<CR>
 nmap \n :NERDTreeToggle<CR>
 nnoremap Q <nop>
 cabbrev qt :tabclose<CR>
-
-let os = substitute(system('uname'), "\n", "", "")
-if os == "FreeBSD"
-  "let &t_ti = "\<Esc>[?47h"
-  "let &t_te = "\<Esc>[?47l"
-endif
 
 set lazyredraw
 

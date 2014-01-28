@@ -210,7 +210,7 @@ myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| magnify Circle ||| mag
 
      magnify = magnifiercz 1.3
 
-myLogHook = composeAll [transparency 0.15, isUnfocusedOnCurrentWS --> transparency 0.3]
+myLogHook = composeAll [transparency 0.1, isUnfocusedOnCurrentWS --> transparency 0.2]
 
 ------------------------------------------------------------------------
 -- Window rules:
