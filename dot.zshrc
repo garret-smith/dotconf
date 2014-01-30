@@ -11,9 +11,6 @@ ZSH_THEME="my"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias -="cd -"
-alias ..="cd .."
-alias ...="cd ../.."
-
 alias ls="ls -FG"
 alias la="ls -a"
 alias ll="ls -l"
@@ -24,7 +21,7 @@ alias lta="ls -ltra"
 zstyle  ':completion:*:*:vim:*:*files' ignored-patterns '*.beam'
 
 # Set to this to use case-sensitive completion
-CASE_SENSITIVE="true"
+#CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -87,8 +84,7 @@ setopt histignorealldups
 setopt nosharehistory
 setopt histnostore
 
-setopt correct
-setopt correctall
-
 ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
+
+zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 

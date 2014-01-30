@@ -12,6 +12,8 @@ import Data.Monoid
 import System.Exit
 
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
+
 import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutCombinators
@@ -20,14 +22,14 @@ import XMonad.Layout.Circle
 import XMonad.Layout.Grid
 import XMonad.Layout.Magnifier
 
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.FadeWindows
-import XMonad.Hooks.FadeInactive
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 
 import XMonad.Util.Themes
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -58,7 +60,7 @@ myModMask       = mod1Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["1:web","2:ref","3:dev","4:doc","5","6","7","8","9:chat"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -74,7 +76,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), shellPrompt defaultXPConfig)
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -100,18 +102,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
-
-    -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
 
     -- Move focus to the previous window
     , ((modm .|. shiftMask, xK_Tab   ), windows W.focusUp)
-
-    -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((modm,               xK_k     ), windows W.focusUp)
 
     -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
+    , ((modm,               xK_m     ), windows W.focusMaster)
 
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
@@ -122,19 +120,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Swap the focused window with the previous window
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
 
-    -- Shrink the master area
+    -- Shrink / expand the master area
     , ((modm,               xK_h     ), sendMessage Shrink)
-
-    -- Expand the master area
     , ((modm,               xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
-    -- Increment the number of windows in the master area
+    -- Increment / decrement the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-
-    -- Deincrement the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
@@ -210,8 +204,6 @@ myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| magnify Circle ||| mag
 
      magnify = magnifiercz 1.3
 
-myLogHook = composeAll [transparency 0.1, isUnfocusedOnCurrentWS --> transparency 0.2]
-
 ------------------------------------------------------------------------
 -- Window rules:
 
@@ -256,7 +248,6 @@ myManageHook = composeAll
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
--- myStartupHook = ewmhDesktopsStartup >> setWMName "LG3D"
 myStartupHook = setWMName "LG3D"
 
 ------------------------------------------------------------------------
@@ -264,15 +255,7 @@ myStartupHook = setWMName "LG3D"
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
-
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
-defaults = defaultConfig {
+main = xmonad $ defaultConfig {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -289,7 +272,5 @@ defaults = defaultConfig {
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook,
-        startupHook        = myStartupHook,
-        logHook            = fadeWindowsLogHook myLogHook,
-        handleEventHook    = fadeWindowsEventHook
+        startupHook        = myStartupHook
     }

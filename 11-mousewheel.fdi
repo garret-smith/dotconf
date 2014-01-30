@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<deviceinfo version="0.2">
+  <device>
+    <match key="info.capabilities" contains="input.mouse">
+      <merge key="input.x11_options.Buttons" type="string">10</merge>
+      <merge key="input.x11_options.Emulate3Buttons" type="string">true</merge>
+      <merge key="input.x11_options.EmulateWheel" type="string">true</merge>
+      <merge key="input.x11_options.EmulateWheelButton" type="string">9</merge>
+      <merge key="input.x11_options.EmulateWheelTimeout" type="string">200</merge>
+      <merge key="input.x11_options.XAxisMapping" type="string">6 7</merge>
+      <merge key="input.x11_options.ZAxisMapping" type="string">4 5</merge>
+    </match>
+  </device>
+</deviceinfo>

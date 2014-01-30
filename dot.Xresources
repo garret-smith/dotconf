@@ -81,3 +81,7 @@ xterm*dynamicColors: true
 ! xterm*faceName: Source Code Pro
 ! xterm*faceSize: 14
 
+dzen2.font:       -*-proggyopti-*-*-*-*-10-*-*-*-*-*-*-*
+dzen2.foreground: #93a1a1
+dzen2.background: #073642
+
