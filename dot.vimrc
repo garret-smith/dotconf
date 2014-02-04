@@ -27,12 +27,13 @@ Bundle 'mbbill/undotree'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'fxn/vim-monochrome'
 Bundle 'lastpos.vim'
+Bundle 'tpope/vim-vividchalk'
 
 filetype plugin indent on
 
 syntax on
 set background=dark
-colo solarized
+colo ir_black
 
 set backup
 set backupdir=~/.vim/backups
@@ -66,6 +67,9 @@ set fileformats+=mac
 
 set history=1000
 
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,latin-1
+
 nmap j gj
 nmap k gk
 
@@ -98,7 +102,7 @@ nmap <leader>gv :Gitv --all<cr>
 nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 
-nmap ; :CtrlPBuffer<CR>
+nmap ; :CtrlPMixed<CR>
 nmap \n :NERDTreeToggle<CR>
 nnoremap Q <nop>
 cabbrev qt :tabclose<CR>
@@ -114,4 +118,9 @@ endif
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tab_nr_type = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='luna'
+
+let NERDTreeDirArrows = 0
 

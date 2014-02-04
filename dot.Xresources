@@ -77,6 +77,7 @@ xterm*scrollTtyOutput: false
 xterm*multiScroll: true
 xterm*scrollKey: true
 xterm*dynamicColors: true
+xterm*utf8: 1
 
 ! xterm*faceName: Source Code Pro
 ! xterm*faceSize: 14
