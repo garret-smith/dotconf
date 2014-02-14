@@ -7,33 +7,28 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-"Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-sleuth'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'sanmiguel/vimerl'
-Bundle 'jnurmine/Zenburn'
+Bundle 'jimenezrick/vimerl'
 Bundle 'tpope/vim-markdown'
 Bundle 'wesgibbs/vim-irblack'
 Bundle 'gregsexton/gitv'
-"Bundle 'majutsushi/tagbar'
-"Bundle 'mileszs/ack.vim'
 Bundle 'mbbill/undotree'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'fxn/vim-monochrome'
 Bundle 'lastpos.vim'
-Bundle 'tpope/vim-vividchalk'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'rking/ag.vim'
+Bundle 'majutsushi/tagbar'
 
 filetype plugin indent on
 
 syntax on
-set background=dark
-colo ir_black
 
 set backup
 set backupdir=~/.vim/backups
@@ -43,13 +38,15 @@ set wildmode=longest,list
 set wildignore+=*/.git/*,*.class,*.beam
 set shell=zsh
 set nowrap
-"set number
+set number
 
 set backspace=indent,eol,start
 "set complete-=i
 set showmatch
+
 set smarttab
 set shiftround
+set expandtab
 
 set ttimeout
 set ttimeoutlen=50
@@ -88,12 +85,8 @@ nmap <C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 
-let g:erlangManPath='~/lib/erlang/man'
-let g:erlangCompletionGrep='grep'
-let g:erlang_folding=1
-let g:erlangHighlightBif=1
-let g:erlangFoldSplitFunction=1
-let g:erlangCheckFile='~/.vim/bundle/vimerl/compiler/erlang_check.erl'
+let g:erlang_use_conceal = 1
+let g:erlang_completion_cache = 0
 
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" \)' }
@@ -103,24 +96,32 @@ nmap <leader>gV :Gitv! --all<cr>
 vmap <leader>gV :Gitv! --all<cr>
 
 nmap ; :CtrlPMixed<CR>
-nmap \n :NERDTreeToggle<CR>
+nmap \n :NERDTreeTabsToggle<CR>
 nnoremap Q <nop>
 cabbrev qt :tabclose<CR>
 
 set lazyredraw
-
-let g:erlang_use_conceal=0
 
 if has("persistent_undo")
   set undodir='~/.vim/undodir/'
   set undofile
 endif
 
+set bg=dark
+let g:no_bg=1
+colo lowc
+
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#tab_nr_type = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme='luna'
+let g:airline#extensions#tagbar#enabled = 1
+
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 let NERDTreeDirArrows = 0
+let NERDTreeIgnore = ['\.beam$', '\.class$']
+
+autocmd FileType erlang setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+
 
