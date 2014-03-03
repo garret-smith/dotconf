@@ -29,6 +29,9 @@ long sumcputime(const long cputime[]) {
 int main(int argc, char ** argv) {
 	struct timespec updateinterval;
 
+	struct loadavg sysload;
+	double load_avg[3];
+
 	struct tcpstat tcpstat;
 	long packets_in, packets_out;
 
@@ -78,12 +81,17 @@ int main(int argc, char ** argv) {
 		tnow = time(NULL);
 		localtime_r(&tnow, &tmnow);
 		strftime(time_buf, 255, "%a, %b %d %I:%M:%S %p", &tmnow);
-		printf("%s        ", time_buf);
+		printf(" %s", time_buf);
 
 		/*
 		getsysctl("hw.acpi.battery.life", &battery, sizeof(battery));
 		printf("Battery: %d%%       ", battery);
 		*/
+
+		getsysctl("vm.loadavg", &sysload, sizeof(sysload));
+		for (i = 0; i < 3; i++)
+			load_avg[i] = (double)sysload.ldavg[i] / sysload.fscale;
+		printf("        %.2f %.2f %.2f", load_avg[0], load_avg[1], load_avg[2]);
 
 		getsysctl("kern.cp_time", cputime2, sizeof(cputime2));
 		// 5 entries: user nice sys interrupt idle
