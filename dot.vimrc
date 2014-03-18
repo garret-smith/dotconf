@@ -107,17 +107,20 @@ if has("persistent_undo")
   set undofile
 endif
 
+"let g:solarized_contrast="low"
+let g:solarized_visibility="high"
 set bg=dark
 let g:no_bg=1
-colo lowc
+"colo lowc
+colo solarized
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tagbar#enabled = 1
 
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+"let g:airline_theme='solarized'
+"let g:airline_solarized_bg='dark'
 
 let NERDTreeDirArrows = 0
 let NERDTreeIgnore = ['\.beam$', '\.class$']

@@ -101,25 +101,25 @@ int main(int argc, char ** argv) {
 		for(i=0; i<CPUSTATES; i++)
 			cpupercent[i] = (float)cputimediff[i] / (float)totalcputime * 100.0;
 		float worktime = cpupercent[0] + cpupercent[1] + cpupercent[2] + cpupercent[3];
-		printf("%3.0f%%  ", worktime);
-		printf("^r(2x10)u^r(%.0fx8)^fg(green)n^r(%.0fx8)^fg(blue)s^r(%.0fx8)^fg(red)i^r(%0.fx8)^p(%.0f)^fg()^r(2x10)", cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
+		printf("       %3.0f%%  ", worktime);
+		printf("^r(2x10)^r(%.0fx8)^fg(green)^r(%.0fx8)^fg(blue)^r(%.0fx8)^fg(red)^r(%0.fx8)^p(%.0f)^fg()^r(2x10)", cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
+		//printf("^pa(380)u^fg(green)n^fg(blue)s^fg(red)i^fg()");
 		memmove(cputime1, cputime2, sizeof(cputime1));
 
-		printf("^pa(450)");
 		printf("        CPU Temps(C):");
 		for (i=0; i<num_cpu; i++) {
 			sprintf(cputemp_sysctl_string, "dev.cpu.%d.temperature", i);
 			getsysctl(cputemp_sysctl_string, &cputemp, sizeof(cputemp));
 			fcputemp = ((float)cputemp - 2732.0) / 10.0;
-			printf("  %.0f", fcputemp);
+			printf(" %.0f", fcputemp);
 		}
 
 		getsysctl("net.inet.tcp.stats", &tcpstat, sizeof(tcpstat));
-		printf("      Packets in: %lu    Packets out: %lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
+		printf("        Packets in/out: %lu/%lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
 		packets_in = tcpstat.tcps_rcvtotal;
 		packets_out = tcpstat.tcps_sndtotal;
 
-		printf("^pa(1800)^ca(1, xscreensaver-command -lock)lock^ca()");
+		printf("                        ^ca(1, xscreensaver-command -lock)lock^ca()");
 
 		printf("\n");
 		fflush(stdout);

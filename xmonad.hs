@@ -237,6 +237,7 @@ myManageHook = composeAll
     , className =? "Gcalctool"      --> doFloat
     , className =? "Plottest.py"    --> doFloat
     , className =? "Graph.py"       --> doFloat
+    , className =? "Giggle"         --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
