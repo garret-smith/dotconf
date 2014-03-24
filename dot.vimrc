@@ -25,6 +25,7 @@ Bundle 'lastpos.vim'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'rking/ag.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'edkolev/erlang-motions.vim'
 
 filetype plugin indent on
 
@@ -38,6 +39,7 @@ set wildmode=longest,list
 set wildignore+=*/.git/*,*.class,*.beam
 set shell=zsh
 set nowrap
+set relativenumber
 set number
 
 set backspace=indent,eol,start
