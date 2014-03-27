@@ -126,7 +126,8 @@ let g:airline#extensions#tagbar#enabled = 1
 
 let NERDTreeDirArrows = 0
 let NERDTreeIgnore = ['\.beam$', '\.class$']
-
 autocmd FileType erlang setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
 
