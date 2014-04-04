@@ -43,7 +43,8 @@ set relativenumber
 set number
 
 set backspace=indent,eol,start
-"set complete-=i
+set complete=.,w,t
+set completeopt=menuone,preview
 set showmatch
 
 set smarttab
@@ -69,6 +70,8 @@ set history=1000
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,latin-1
 
+set lazyredraw
+
 nmap j gj
 nmap k gk
 
@@ -87,11 +90,11 @@ nmap <C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 
-let g:erlang_use_conceal = 1
-let g:erlang_completion_cache = 0
+"let g:erlang_use_conceal = 1
+"let g:erlang_completion_cache = 0
 
 let g:ctrlp_clear_cache_on_exit=1
-let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" \)' }
+let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" -or -name ".*~"\)' }
 
 nmap <leader>gv :Gitv --all<cr>
 nmap <leader>gV :Gitv! --all<cr>
@@ -102,7 +105,8 @@ nmap \n :NERDTreeTabsToggle<CR>
 nnoremap Q <nop>
 cabbrev qt :tabclose<CR>
 
-set lazyredraw
+nnoremap <silent> <F9> :TagbarToggle<CR>
+let g:tagbar_autoclose = 1
 
 if has("persistent_undo")
   set undodir='~/.vim/undodir/'
@@ -128,6 +132,6 @@ let NERDTreeDirArrows = 0
 let NERDTreeIgnore = ['\.beam$', '\.class$']
 autocmd FileType erlang setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
-let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_cache_omnifunc = 0
 
