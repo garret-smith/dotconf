@@ -120,6 +120,7 @@ int main(int argc, char ** argv) {
 		packets_out = tcpstat.tcps_sndtotal;
 
 		printf("                        ^ca(1, xscreensaver-command -lock)lock^ca()");
+		printf("     vol ^ca(1, mixer vol +5)up^ca()/^ca(1, mixer vol -5)down^ca()");
 
 		printf("\n");
 		fflush(stdout);

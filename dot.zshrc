@@ -49,11 +49,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colored-man compleat fasd git sudo wd)
+plugins=(colored-man compleat fasd git history-substring-search sudo wd)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+source ~/.zkbd/$TERM-$VENDOR-$OSTYPE
 
 bindkey -e
 
@@ -62,14 +62,20 @@ bindkey -s "${key[F1]}" '!:1 '
 bindkey -s "${key[F2]}" '!:2 '
 bindkey -s "${key[F3]}" '!:3 '
 bindkey -s "${key[F4]}" '!:4 '
+bindkey -s "${key[F5]}" '!:5 '
 
 # up arrow key search history backward, down arrow key search forward
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "${key[Up]}" up-line-or-beginning-search
-bindkey "${key[Down]}" down-line-or-beginning-search
+#autoload -U up-line-or-beginning-search
+#autoload -U down-line-or-beginning-search
+#zle -N up-line-or-beginning-search
+#zle -N down-line-or-beginning-search
+#bindkey "${key[Up]}" up-line-or-beginning-search
+#bindkey "${key[Down]}" down-line-or-beginning-search
+bindkey "${key[Up]}" history-substring-search
+bindkey "${key[Down]}" history-substring-search
+
+bindkey "${key[End]}" end-of-line
+bindkey "${key[Backspace]}" backward-delete-char
 
 autoload -U select-word-style
 select-word-style whitespace
@@ -87,4 +93,8 @@ setopt histnostore
 ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 
 zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+alias glggd='git log --graph --decorate --all --stat'
+
+alias ls='gnuls --color'
 

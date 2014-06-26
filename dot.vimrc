@@ -1,34 +1,37 @@
 
 set nocompatible
-
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-sleuth'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jimenezrick/vimerl'
-Bundle 'tpope/vim-markdown'
-Bundle 'wesgibbs/vim-irblack'
-Bundle 'gregsexton/gitv'
-Bundle 'mbbill/undotree'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'lastpos.vim'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'rking/ag.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'edkolev/erlang-motions.vim'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/syntastic'
+Plugin 'jimenezrick/vimerl'
+Plugin 'tpope/vim-markdown'
+Plugin 'gregsexton/gitv'
+Plugin 'mbbill/undotree'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'lastpos.vim'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'rking/ag.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'edkolev/erlang-motions.vim'
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'wesgibbs/vim-irblack'
+Plugin 'https://github.com/gregsexton/Atom'
+Plugin 'https://github.com/gregsexton/Muon'
+
+call vundle#end()
 
 filetype plugin indent on
-
 syntax on
 
 set backup
@@ -115,6 +118,7 @@ endif
 
 "let g:solarized_contrast="low"
 let g:solarized_visibility="high"
+let g:solarized_termtrans=1
 set bg=dark
 let g:no_bg=1
 "colo lowc
@@ -124,6 +128,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tagbar#enabled = 1
+let g:airline_powerline_fonts=1
 
 "let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
