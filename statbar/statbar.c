@@ -46,14 +46,21 @@ int main(int argc, char ** argv) {
 
 	int battery;
 
-	const int num_cpu = 4;  // really aught to read hw.ncpu sysctl
+	int num_cpu;
+	getsysctl("hw.ncpu", &num_cpu, sizeof(num_cpu));
+
 	char cputemp_sysctl_string[256];
 	int cputemp;
 	float fcputemp;
 
 	long totalcputime;
 
+	u_int mempages;
+	u_int freemempages;
+
 	int i;
+
+	float worktime;
 
 	updateinterval.tv_sec = 0;
 	updateinterval.tv_nsec = 0;
@@ -74,6 +81,8 @@ int main(int argc, char ** argv) {
 	getsysctl("net.inet.tcp.stats", &tcpstat, sizeof(tcpstat));
 	packets_in = tcpstat.tcps_rcvtotal;
 	packets_out = tcpstat.tcps_sndtotal;
+
+	getsysctl("vm.stats.vm.v_page_count", &mempages, sizeof(mempages));
 
 	while(1) {
 		nanosleep(&updateinterval, NULL);
@@ -100,14 +109,17 @@ int main(int argc, char ** argv) {
 		totalcputime = sumcputime(cputimediff);
 		for(i=0; i<CPUSTATES; i++)
 			cpupercent[i] = (float)cputimediff[i] / (float)totalcputime * 100.0;
-		float worktime = cpupercent[0] + cpupercent[1] + cpupercent[2] + cpupercent[3];
-		printf("       %3.0f%%  ", worktime);
+		worktime = cpupercent[0] + cpupercent[1] + cpupercent[2] + cpupercent[3];
+		printf("     %3.0f%%  ", worktime);
 		printf("^r(2x10)^r(%.0fx8)^fg(green)^r(%.0fx8)^fg(blue)^r(%.0fx8)^fg(red)^r(%0.fx8)^p(%.0f)^fg()^r(2x10)", cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
 		//printf("^pa(380)u^fg(green)n^fg(blue)s^fg(red)i^fg()");
 		memmove(cputime1, cputime2, sizeof(cputime1));
 
-		printf("        CPU Temps(C):");
-		for (i=0; i<num_cpu; i++) {
+		getsysctl("vm.stats.vm.v_free_count", &freemempages, sizeof(freemempages));
+		printf("       Free mem: %u%%", 100 * freemempages / mempages);
+
+		printf("      CPU Temps(C):");
+		for (i=0; i<num_cpu; i+=2) {
 			sprintf(cputemp_sysctl_string, "dev.cpu.%d.temperature", i);
 			getsysctl(cputemp_sysctl_string, &cputemp, sizeof(cputemp));
 			fcputemp = ((float)cputemp - 2732.0) / 10.0;
@@ -115,11 +127,11 @@ int main(int argc, char ** argv) {
 		}
 
 		getsysctl("net.inet.tcp.stats", &tcpstat, sizeof(tcpstat));
-		printf("        Packets in/out: %lu/%lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
+		printf("      Packets in/out: %lu/%lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
 		packets_in = tcpstat.tcps_rcvtotal;
 		packets_out = tcpstat.tcps_sndtotal;
 
-		printf("                        ^ca(1, xscreensaver-command -lock)lock^ca()");
+		printf("                     ^ca(1, xscreensaver-command -lock)lock^ca()");
 		printf("     vol ^ca(1, mixer vol +5)up^ca()/^ca(1, mixer vol -5)down^ca()");
 
 		printf("\n");
