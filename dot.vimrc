@@ -82,7 +82,7 @@ if filereadable("cscope.out")
   cs add cscope.out
 endif
 set cscopetag cscopeverbose
-set csto=1
+set csto=0
 nmap \s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap \g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap \t :cs find t <C-R>=expand("<cword>")<CR><CR>
@@ -92,6 +92,8 @@ nmap <C-\>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 "let g:erlang_use_conceal = 1
 "let g:erlang_completion_cache = 0
@@ -118,7 +120,7 @@ endif
 
 "let g:solarized_contrast="low"
 let g:solarized_visibility="high"
-let g:solarized_termtrans=1
+"let g:solarized_termtrans=1
 set bg=dark
 let g:no_bg=1
 "colo lowc
@@ -128,7 +130,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tagbar#enabled = 1
-let g:airline_powerline_fonts=1
+"let g:airline_powerline_fonts=1
 
 "let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'

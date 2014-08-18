@@ -95,6 +95,7 @@ ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 alias glggd='git log --graph --decorate --all --stat'
+alias gstl='git stash list'
 
 alias ls='gnuls --color'
 

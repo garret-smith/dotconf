@@ -55,8 +55,12 @@ int main(int argc, char ** argv) {
 
 	long totalcputime;
 
-	u_int mempages;
-	u_int freemempages;
+	u_int v_page_count;
+	u_int v_free_count;
+	u_int v_wire_count;
+	u_int v_active_count;
+	u_int v_inactive_count;
+	u_int v_cache_count;
 
 	int i;
 
@@ -82,7 +86,7 @@ int main(int argc, char ** argv) {
 	packets_in = tcpstat.tcps_rcvtotal;
 	packets_out = tcpstat.tcps_sndtotal;
 
-	getsysctl("vm.stats.vm.v_page_count", &mempages, sizeof(mempages));
+	getsysctl("vm.stats.vm.v_page_count", &v_page_count, sizeof(v_page_count));
 
 	while(1) {
 		nanosleep(&updateinterval, NULL);
@@ -115,8 +119,18 @@ int main(int argc, char ** argv) {
 		//printf("^pa(380)u^fg(green)n^fg(blue)s^fg(red)i^fg()");
 		memmove(cputime1, cputime2, sizeof(cputime1));
 
-		getsysctl("vm.stats.vm.v_free_count", &freemempages, sizeof(freemempages));
-		printf("       Free mem: %u%%", 100 * freemempages / mempages);
+		getsysctl("vm.stats.vm.v_free_count", &v_free_count, sizeof(v_free_count));
+		getsysctl("vm.stats.vm.v_wire_count", &v_wire_count, sizeof(v_wire_count));
+		getsysctl("vm.stats.vm.v_active_count", &v_active_count, sizeof(v_active_count));
+		getsysctl("vm.stats.vm.v_inactive_count", &v_inactive_count, sizeof(v_inactive_count));
+		getsysctl("vm.stats.vm.v_cache_count", &v_cache_count, sizeof(v_cache_count));
+		printf("       mem: %u%% free (%u%% f %u%% i %u%% c) %u%% w %u%% a",
+				100 * (v_free_count + v_inactive_count + v_cache_count) / v_page_count,
+				100 * v_free_count / v_page_count,
+				100 * v_inactive_count / v_page_count,
+				100 * v_cache_count / v_page_count,
+				100 * v_wire_count / v_page_count,
+				100 * v_active_count / v_page_count);
 
 		printf("      CPU Temps(C):");
 		for (i=0; i<num_cpu; i+=2) {
