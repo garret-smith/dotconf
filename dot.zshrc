@@ -76,9 +76,13 @@ bindkey "${key[Down]}" history-substring-search
 
 bindkey "${key[End]}" end-of-line
 bindkey "${key[Backspace]}" backward-delete-char
+bindkey "${key[Delete]}" delete-char
 
-autoload -U select-word-style
-select-word-style whitespace
+#autoload -U select-word-style
+#select-word-style whitespace
+
+bindkey "[D" backward-word
+bindkey "[C" forward-word
 
 # Customize to your needs...
 export REPORTTIME=5

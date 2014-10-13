@@ -145,8 +145,12 @@ int main(int argc, char ** argv) {
 		packets_in = tcpstat.tcps_rcvtotal;
 		packets_out = tcpstat.tcps_sndtotal;
 
-		printf("                     ^ca(1, xscreensaver-command -lock)lock^ca()");
-		printf("     vol ^ca(1, mixer vol +5)up^ca()/^ca(1, mixer vol -5)down^ca()");
+		printf("^pa(1300,0)");
+		printf("^ca(1, xscreensaver-command -lock)lock^ca()");
+		printf(" | ");
+		printf("^ca(1, xfe)xfe^ca()");
+		printf(" | ");
+		printf("vol ^ca(1, mixer vol +5)up^ca()/^ca(1, mixer vol -5)down^ca()");
 
 		printf("\n");
 		fflush(stdout);

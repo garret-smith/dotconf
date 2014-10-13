@@ -193,7 +193,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| magnify Circle ||| magnify Grid ||| noBorders mytabs)
+-- myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| magnify Circle ||| magnify Grid ||| noBorders mytabs)
+myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| noBorders mytabs)
   where
      tiled   = Tall nmaster delta ratio -- default tiling algorithm partitions the screen into two panes
      nmaster = 1 -- The default number of windows in the master pane
