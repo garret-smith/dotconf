@@ -11,23 +11,27 @@ Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'jimenezrick/vimerl'
 Plugin 'tpope/vim-markdown'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lastpos.vim'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'edkolev/erlang-motions.vim'
 
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-speeddating'
+Plugin 'utl.vim'
+
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'wesgibbs/vim-irblack'
-Plugin 'https://github.com/gregsexton/Atom'
-Plugin 'https://github.com/gregsexton/Muon'
+"Plugin 'wesgibbs/vim-irblack'
+"Plugin 'https://github.com/gregsexton/Atom'
+"Plugin 'https://github.com/gregsexton/Muon'
 
 call vundle#end()
 
@@ -58,6 +62,7 @@ set ttimeout
 set ttimeoutlen=50
 
 set incsearch
+set nohlsearch
 set laststatus=2
 set showcmd
 
@@ -141,4 +146,10 @@ autocmd FileType erlang setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_cache_omnifunc = 0
+
+set cc=80
+set tw=80
+set fo-=t
+
+set t_kD=
 
