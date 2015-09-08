@@ -19,5 +19,5 @@ if [ "$EVT" = "songstart" ]; then
         else
                 love=""
         fi
-        echo "$love$title / $artist" | ftee $SONG_FIFO >> /dev/null
+        echo "$love$title / $artist" | nbwf $SONG_FIFO
 fi
