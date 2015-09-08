@@ -49,7 +49,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colored-man compleat fasd git history-substring-search sudo wd)
+plugins=(colored-man compleat fasd git history-substring-search sudo wd virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,10 +76,10 @@ bindkey "${key[Down]}" history-substring-search
 
 bindkey "${key[End]}" end-of-line
 bindkey "${key[Backspace]}" backward-delete-char
-bindkey "${key[Delete]}" delete-char
+#bindkey "${key[Delete]}" delete-char
 
-#autoload -U select-word-style
-#select-word-style whitespace
+autoload -U select-word-style
+select-word-style whitespace
 
 bindkey "[D" backward-word
 bindkey "[C" forward-word
@@ -91,6 +91,7 @@ HISTSIZE=SAVEHIST=10000
 setopt incappendhistory
 setopt extendedhistory
 setopt histignorealldups
+setopt histignorespace
 setopt nosharehistory
 setopt histnostore
 
@@ -102,4 +103,6 @@ alias glggd='git log --graph --decorate --all --stat'
 alias gstl='git stash list'
 
 alias ls='gnuls --color'
+alias emacs='emacs -nw'
+ff () { find . -name $* }
 

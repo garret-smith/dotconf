@@ -5,13 +5,13 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'jimenezrick/vimerl'
 Plugin 'tpope/vim-markdown'
@@ -19,7 +19,7 @@ Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lastpos.vim'
-"Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'edkolev/erlang-motions.vim'
@@ -150,6 +150,4 @@ let g:ycm_cache_omnifunc = 0
 set cc=80
 set tw=80
 set fo-=t
-
-set t_kD=
 

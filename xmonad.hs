@@ -34,7 +34,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "st -e tmux"
+myTerminal      = "st"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -230,6 +230,7 @@ myManageHook = composeAll
     , className =? "Git-gui"        --> doFloat
     , className =? "Gitk"           --> doFloat
     , className =? "Qgit"           --> doFloat
+    , className =? "Gitg"           --> doFloat
     , className =? "Toplevel"       --> doFloat
     , className =? "DeploymentLab-Main" --> doFloat
     , className =? "Erlang"         --> doFloat
