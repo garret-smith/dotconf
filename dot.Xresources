@@ -104,7 +104,9 @@ xterm*termName: xterm
 !xterm*faceSize: 12
 
 ! dzen2.font:       -*-proggyopti-*-*-*-*-10-*-*-*-*-*-*-*
-dzen2.font: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
-dzen2.foreground: #93a1a1
+! dzen2.font: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-1
+dzen2.font: Hack:pixelsize=14
+!dzen2.foreground: #93a1a1
+dzen2.foreground: #2aa198
 dzen2.background: #073642
 

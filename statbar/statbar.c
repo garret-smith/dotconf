@@ -73,7 +73,7 @@ int main(int argc, char ** argv) {
 	int song_fifo;
 	int bytes_read;
 
-	const char* const sep = " ^r(5x16) ";
+	const char* const sep = "^fg(#dc322f)][^fg()";
 
 	song_buffer[0] = 0;
 
@@ -130,7 +130,7 @@ int main(int argc, char ** argv) {
 		worktime = cpupercent[0] + cpupercent[1] + cpupercent[2] + cpupercent[3];
 		printf(sep);
 		printf("%3.0f%%", worktime);
-		printf("^r(2x10)^r(%.0fx8)^fg(green)^r(%.0fx8)^fg(blue)^r(%.0fx8)^fg(red)^r(%0.fx8)^p(%.0f)^fg()^r(2x10)", cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
+		printf("^r(2x12)^r(%.0fx10)^fg(green)^r(%.0fx10)^fg(blue)^r(%.0fx10)^fg(red)^r(%0.fx10)^p(%.0f)^fg()^r(2x12)", cpupercent[0], cpupercent[1], cpupercent[2], cpupercent[3], cpupercent[4]);
 		//printf("^pa(380)u^fg(green)n^fg(blue)s^fg(red)i^fg()");
 		memmove(cputime1, cputime2, sizeof(cputime1));
 
@@ -161,7 +161,7 @@ int main(int argc, char ** argv) {
 
 		getsysctl("net.inet.tcp.stats", &tcpstat, sizeof(tcpstat));
 		printf(sep);
-		printf("Net in/out: %lu/%lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
+		printf("Net in/out: %4lu/%4lu", tcpstat.tcps_rcvtotal - packets_in, tcpstat.tcps_sndtotal - packets_out);
 		packets_in = tcpstat.tcps_rcvtotal;
 		packets_out = tcpstat.tcps_sndtotal;
 
@@ -169,7 +169,6 @@ int main(int argc, char ** argv) {
 			song_buffer[bytes_read-1] = 0;
 		}
 
-		printf("^pa(1050,0)");
 		printf(sep);
 		printf("^ca(1, xscreensaver-command -lock)lock^ca()");
 		printf(sep);
