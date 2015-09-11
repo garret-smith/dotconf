@@ -3,6 +3,6 @@
 DIR=~/.config/pianobar
 CTL=${DIR}/ctl
 
-echo 'p' >> $CTL
+echo 'p' | nbwf $CTL
 
 

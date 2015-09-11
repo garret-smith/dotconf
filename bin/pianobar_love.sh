@@ -3,5 +3,5 @@
 DIR=~/.config/pianobar
 CTL=${DIR}/ctl
 
-echo '+' >> $CTL
+echo '+' | nbwf $CTL
 
