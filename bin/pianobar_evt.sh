@@ -6,6 +6,7 @@ SONG_FIFO=${DIR}/song_fifo
 
 EVT="$1"
 
+echo -n > $SONG
 while read L; do
         k="`echo "$L" | cut -d '=' -f 1`"
         v="`echo "$L" | cut -d '=' -f 2`"
@@ -19,5 +20,5 @@ if [ "$EVT" = "songstart" ]; then
         else
                 love=""
         fi
-        echo "$love$title / $artist" | nbwf $SONG_FIFO
+        echo "$love$title / $artist [$stationName]" | nbwf $SONG_FIFO
 fi
