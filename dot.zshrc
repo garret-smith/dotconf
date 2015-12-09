@@ -75,7 +75,7 @@ bindkey "${key[Up]}" history-substring-search
 bindkey "${key[Down]}" history-substring-search
 
 bindkey "${key[End]}" end-of-line
-bindkey "${key[Backspace]}" backward-delete-char
+#bindkey "${key[Backspace]}" backward-delete-char
 #bindkey "${key[Delete]}" delete-char
 
 autoload -U select-word-style
