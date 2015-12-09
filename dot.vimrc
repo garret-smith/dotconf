@@ -9,7 +9,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -29,7 +29,8 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'utl.vim'
 
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'wesgibbs/vim-irblack'
+Plugin 'wesgibbs/vim-irblack'
+Plugin 'fxn/vim-monochrome'
 "Plugin 'https://github.com/gregsexton/Atom'
 "Plugin 'https://github.com/gregsexton/Muon'
 
@@ -101,7 +102,7 @@ nmap <C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 "let g:erlang_use_conceal = 1
-"let g:erlang_completion_cache = 0
+let g:erlang_completion_cache = 1
 
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_user_command = { 'types': {1: ['.git', 'cd %s && git ls-files'] }, 'fallback': 'find %s -type f -maxdepth 5 -not \( -path "*/.*" -or -name ".*" -or -name ".*~"\)' }
@@ -119,7 +120,7 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
 
 if has("persistent_undo")
-  set undodir='~/.vim/undodir/'
+  set undodir=~/.vim/undodir/
   set undofile
 endif
 
@@ -127,17 +128,17 @@ endif
 let g:solarized_visibility="high"
 "let g:solarized_termtrans=1
 set bg=dark
-let g:no_bg=1
-"colo lowc
-colo solarized
+"let g:no_bg=1
+colo slate
+"colo solarized
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tagbar#enabled = 1
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 
-"let g:airline_theme='solarized'
+let g:airline_theme='raven'
 "let g:airline_solarized_bg='dark'
 
 let NERDTreeDirArrows = 0
