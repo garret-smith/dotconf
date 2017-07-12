@@ -10,10 +10,10 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'jimenezrick/vimerl'
 Plugin 'tpope/vim-markdown'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
@@ -22,7 +22,7 @@ Plugin 'lastpos.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'edkolev/erlang-motions.vim'
+Plugin 'airblade/vim-gitgutter'
 
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
@@ -31,8 +31,11 @@ Plugin 'utl.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'wesgibbs/vim-irblack'
 Plugin 'fxn/vim-monochrome'
-"Plugin 'https://github.com/gregsexton/Atom'
-"Plugin 'https://github.com/gregsexton/Muon'
+Plugin 'gregsexton/Atom'
+Plugin 'gregsexton/Muon'
+
+"Plugin 'jimenezrick/vimerl'
+"Plugin 'edkolev/erlang-motions.vim'
 
 call vundle#end()
 
@@ -77,7 +80,7 @@ set fileformats+=mac
 set history=1000
 
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,latin-1
+set fileencodings=ucs-bom,utf-8,utf-16le,default,latin-1
 
 set lazyredraw
 
@@ -129,8 +132,19 @@ let g:solarized_visibility="high"
 "let g:solarized_termtrans=1
 set bg=dark
 "let g:no_bg=1
-colo slate
-"colo solarized
+
+if &diff
+  colo atom
+  set guioptions-=M
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=r
+  set guioptions-=L
+
+  set guifont=Terminus\ 8
+else
+  colo slate
+endif
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1

@@ -49,7 +49,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colored-man compleat fasd git history-substring-search sudo wd virtualenvwrapper)
+plugins=(colored-man-pages compleat fasd git git-flow git-prompt history-substring-search sudo virtualenvwrapper wd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -57,26 +57,14 @@ source ~/.zkbd/$TERM-$VENDOR-$OSTYPE
 
 bindkey -e
 
-# F1-F4 bound to retrieve 1st - 4th argument of previous command
+# F1-F5 bound to retrieve 1st - 5th argument of previous command
 bindkey -s "${key[F1]}" '!:1 '
 bindkey -s "${key[F2]}" '!:2 '
 bindkey -s "${key[F3]}" '!:3 '
 bindkey -s "${key[F4]}" '!:4 '
 bindkey -s "${key[F5]}" '!:5 '
 
-# up arrow key search history backward, down arrow key search forward
-#autoload -U up-line-or-beginning-search
-#autoload -U down-line-or-beginning-search
-#zle -N up-line-or-beginning-search
-#zle -N down-line-or-beginning-search
-#bindkey "${key[Up]}" up-line-or-beginning-search
-#bindkey "${key[Down]}" down-line-or-beginning-search
-bindkey "${key[Up]}" history-substring-search
-bindkey "${key[Down]}" history-substring-search
-
-bindkey "${key[End]}" end-of-line
-#bindkey "${key[Backspace]}" backward-delete-char
-#bindkey "${key[Delete]}" delete-char
+bindkey "${key[Delete]}" delete-char
 
 autoload -U select-word-style
 select-word-style whitespace
@@ -86,6 +74,8 @@ bindkey "[C" forward-word
 
 # Customize to your needs...
 export REPORTTIME=5
+
+export EDITOR=vim
 
 HISTSIZE=SAVEHIST=10000
 setopt incappendhistory
@@ -100,9 +90,9 @@ ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 alias glggd='git log --graph --decorate --all --stat'
-alias gstl='git stash list'
 
 alias ls='gnuls --color'
-alias emacs='emacs -nw'
-ff () { find . -name $* }
+ff () { find . -name "*$**" }
+ffxg () { find . -name "*$1*" | xargs grep $2 }
+
 

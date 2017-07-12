@@ -78,11 +78,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_p     ), shellPrompt defaultXPConfig)
 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- launch grun
+    , ((modm .|. shiftMask, xK_p     ), spawn "grun")
 
     -- lock screen
-    , ((modm .|. shiftMask, xK_l     ), spawn "xs-lock")
+    , ((modm .|. shiftMask, xK_l     ), spawn "lock")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -223,24 +223,11 @@ myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| noBorders mytabs)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
-    , className =? "Dia"            --> doFloat
-    , className =? "rdesktop"       --> doFloat
-    , className =? "Pidgin"         --> doFloat
-    , className =? "Osmo"           --> doFloat
     , className =? "Git-gui"        --> doFloat
     , className =? "Gitk"           --> doFloat
     , className =? "Qgit"           --> doFloat
     , className =? "Gitg"           --> doFloat
-    , className =? "Toplevel"       --> doFloat
-    , className =? "DeploymentLab-Main" --> doFloat
-    , className =? "Erlang"         --> doFloat
-    , className =? "Ipython"        --> doFloat
-    , className =? "Vncviewer"      --> doFloat
     , className =? "Gcalctool"      --> doFloat
-    , className =? "Plottest.py"    --> doFloat
-    , className =? "Graph.py"       --> doFloat
-    , className =? "Giggle"         --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
 ------------------------------------------------------------------------

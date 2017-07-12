@@ -15,5 +15,5 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PROMPT=' '
 #RPROMPT='%~$(git_prompt_info)$(virtualenv_info)$(get_host)'
-RPROMPT='%F{yellow}%~%f$(git_prompt_info)%f%b $(virtualenv_info)%n@%B%m%b'
+RPROMPT='%F{yellow}%~%f$(git_super_status)%f%b'
 
