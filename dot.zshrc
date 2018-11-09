@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+WORKON_HOME=~/.virtualenvs
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -19,6 +21,7 @@ alias lla="ls -la"
 alias lta="ls -ltra"
 
 zstyle  ':completion:*:*:vim:*:*files' ignored-patterns '*.beam'
+zstyle  ':completion:*:*:nvim:*:*files' ignored-patterns '*.beam'
 
 # Set to this to use case-sensitive completion
 #CASE_SENSITIVE="true"
@@ -49,7 +52,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colored-man-pages compleat fasd git git-flow git-prompt history-substring-search sudo virtualenvwrapper wd)
+plugins=(colored-man-pages compleat fasd git git-flow git-prompt \
+        history-substring-search sudo virtualenvwrapper wd zsh_reload \
+        zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -64,6 +69,7 @@ bindkey -s "${key[F3]}" '!:3 '
 bindkey -s "${key[F4]}" '!:4 '
 bindkey -s "${key[F5]}" '!:5 '
 
+bindkey "${key[Backspace]}" backward-delete-char
 bindkey "${key[Delete]}" delete-char
 
 autoload -U select-word-style
@@ -74,8 +80,8 @@ bindkey "[C" forward-word
 
 # Customize to your needs...
 export REPORTTIME=5
-
 export EDITOR=vim
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 
 HISTSIZE=SAVEHIST=10000
 setopt incappendhistory
@@ -95,4 +101,5 @@ alias ls='gnuls --color'
 ff () { find . -name "*$**" }
 ffxg () { find . -name "*$1*" | xargs grep $2 }
 
+ccp() { export CCP_ROOT=~/work/ccp; . $CCP_ROOT/ccp.zsh; cd $CCP_ROOT }
 

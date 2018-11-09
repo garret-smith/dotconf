@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-WALLPAPER=( ~/wallpaper/* )
-feh --bg-fill $WALLPAPER[$RANDOM%$#WALLPAPER+1]
+wps=( ~/wallpaper/Active/* )
+feh --bg-fill ${wps[$RANDOM % ${#wps[@]}]}
 

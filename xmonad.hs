@@ -11,7 +11,7 @@ import XMonad hiding ( (|||) )
 import Data.Monoid
 import System.Exit
 
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageDocks (ToggleStruts(..),avoidStruts,docks,manageDocks)
 import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.Tabbed
@@ -76,10 +76,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), shellPrompt defaultXPConfig)
+    , ((modm,               xK_p     ), shellPrompt def)
 
     -- launch grun
-    , ((modm .|. shiftMask, xK_p     ), spawn "grun")
+    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- lock screen
     , ((modm .|. shiftMask, xK_l     ), spawn "lock")
@@ -223,9 +223,10 @@ myLayout = avoidStruts (Mirror tiled ||| spiral ratio ||| noBorders mytabs)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "rdesktop"       --> doFloat
     , className =? "Git-gui"        --> doFloat
     , className =? "Gitk"           --> doFloat
-    , className =? "Qgit"           --> doFloat
+    , className =? "qgit4"          --> doFloat
     , className =? "Gitg"           --> doFloat
     , className =? "Gcalctool"      --> doFloat
     , resource  =? "kdesktop"       --> doIgnore ]
@@ -245,7 +246,7 @@ myStartupHook = setWMName "LG3D"
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad $ defaultConfig {
+main = xmonad $ docks def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -264,3 +265,4 @@ main = xmonad $ defaultConfig {
         manageHook         = myManageHook,
         startupHook        = myStartupHook
     }
+

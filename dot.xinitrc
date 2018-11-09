@@ -4,18 +4,21 @@ xmodmap ~/dotconf/leftmouse.xmod
 
 xrdb -merge ~/dotconf/dot.Xresources
 
-xrandr --output DVI-I-3 --off
-xrandr --output DVI-I-2 --mode 1920x1080
-xrandr --output DVI-I-3 --right-of DVI-I-2 --mode 1920x1200
+#xrandr --output HDMI2 --right-of VGA1 --mode 1920x1200
+#xrandr --output VGA1 --left-of HDMI2 --mode 1600x1200
+#xrandr --output DVI-I-1 --right-of DVI-D-0
+#xrandr --output DVI-D-0 --left-of DP-1
+xrandr --output DP-1 --left-of DVI-I-1 --mode 2560x1440
+xrandr --output DVI-I-1 --right-of DP-1 --mode 1920x1200
+#xrandr --output HDMI-0 --right-of DVI-D-0 --left-of DVI-I-1
 
 xscreensaver -nosplash &
-statbar | dzen2 -ta l -xs 1 &
-#statbar | dzen2 -ta l -xs 2 &
-wallpaper
+#statbar | dzen2 -ta l -xs 1 &
+statbar | dzen2 -dock -ta l -xs 2 &
 #xcompmgr -cCfF -D 5 &
 wpchanger &
-synergys &
-redshift -l 38.65:-121.12 -t 6000:4000 &
+synergy-core --server &
+redshift -l 38.54:-121.27 -t 6500:3600 &
 
 xmonad
 

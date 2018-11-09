@@ -13,16 +13,23 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'gabrielelana/vim-markdown'
+Plugin 'jimenezrick/vimerl'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lastpos.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
+
+" Plugin 'vim-erlang/vim-erlang-compiler'
+" Plugin 'vim-erlang/vim-erlang-skeletons'
+" Plugin 'vim-erlang/vim-erlang-omnicomplete'
+" Plugin 'edkolev/erlang-motions.vim'
 
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
@@ -33,9 +40,6 @@ Plugin 'wesgibbs/vim-irblack'
 Plugin 'fxn/vim-monochrome'
 Plugin 'gregsexton/Atom'
 Plugin 'gregsexton/Muon'
-
-"Plugin 'jimenezrick/vimerl'
-"Plugin 'edkolev/erlang-motions.vim'
 
 call vundle#end()
 
@@ -128,7 +132,7 @@ if has("persistent_undo")
 endif
 
 "let g:solarized_contrast="low"
-let g:solarized_visibility="high"
+"let g:solarized_visibility="high"
 "let g:solarized_termtrans=1
 set bg=dark
 "let g:no_bg=1
@@ -141,9 +145,9 @@ if &diff
   set guioptions-=r
   set guioptions-=L
 
-  set guifont=Terminus\ 8
+  set guifont=Terminus\ (TTF)\ Medium\ 12
 else
-  colo slate
+  colo solarized
 endif
 
 let g:airline#extensions#tabline#enabled = 1
@@ -152,15 +156,23 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_powerline_fonts=1
 
-let g:airline_theme='raven'
+let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
 
-let NERDTreeDirArrows = 0
+let NERDTreeDirArrows = 1
 let NERDTreeIgnore = ['\.beam$', '\.class$']
 autocmd FileType erlang setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": [] }
+
+let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_cache_omnifunc = 0
+let g:ycm_cache_omnifunc = 1
+
+let g:ackprg = 'ag --vimgrep'
 
 set cc=80
 set tw=80
