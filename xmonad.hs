@@ -78,8 +78,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_p     ), shellPrompt defaultXPConfig)
 
-    -- launch grun
-    , ((modm .|. shiftMask, xK_p     ), spawn "grun")
+    -- launch gmrun
+    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- lock screen
     , ((modm .|. shiftMask, xK_l     ), spawn "lock")
@@ -225,7 +225,7 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
     , className =? "Git-gui"        --> doFloat
     , className =? "Gitk"           --> doFloat
-    , className =? "Qgit"           --> doFloat
+    , className =? "qgit4"           --> doFloat
     , className =? "Gitg"           --> doFloat
     , className =? "Gcalctool"      --> doFloat
     , resource  =? "kdesktop"       --> doIgnore ]

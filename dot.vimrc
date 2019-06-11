@@ -5,6 +5,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+"Plugin 'slashmili/alchemist.vim'
+Plugin 'elixir-editors/vim-elixir'
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-git'
@@ -13,26 +16,28 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lastpos.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
-
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
 Plugin 'utl.vim'
+Plugin 'christianrondeau/vim-base64'
 
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'wesgibbs/vim-irblack'
-Plugin 'fxn/vim-monochrome'
+Bundle 'sonph/onehalf', {'rtp': 'vim/'}
+"Plugin 'wesgibbs/vim-irblack'
+"Plugin 'fxn/vim-monochrome'
 Plugin 'gregsexton/Atom'
-Plugin 'gregsexton/Muon'
+"Plugin 'gregsexton/Muon'
 
 "Plugin 'jimenezrick/vimerl'
 "Plugin 'edkolev/erlang-motions.vim'
@@ -48,7 +53,7 @@ set backupdir=~/.vim/backups
 set wildmenu
 set wildmode=longest,list
 set wildignore+=*/.git/*,*.class,*.beam
-set shell=zsh
+set shell=bash
 set nowrap
 set relativenumber
 set number
@@ -128,7 +133,7 @@ if has("persistent_undo")
 endif
 
 "let g:solarized_contrast="low"
-let g:solarized_visibility="high"
+"let g:solarized_visibility="high"
 "let g:solarized_termtrans=1
 set bg=dark
 "let g:no_bg=1
@@ -141,19 +146,21 @@ if &diff
   set guioptions-=r
   set guioptions-=L
 
-  set guifont=Terminus\ 8
+  set guifont=Terminus\ 10
 else
-  colo slate
+  colo solarized
 endif
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"let g:airline#extensions#tabline#tab_nr_type = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tagbar#enabled = 1
+"let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts=1
 
-let g:airline_theme='raven'
-"let g:airline_solarized_bg='dark'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 let NERDTreeDirArrows = 0
 let NERDTreeIgnore = ['\.beam$', '\.class$']
@@ -162,7 +169,7 @@ autocmd FileType erlang setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_cache_omnifunc = 0
 
-set cc=80
-set tw=80
+"set cc=80
+"set tw=80
 set fo-=t
 
