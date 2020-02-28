@@ -175,15 +175,17 @@ int main(int argc, char ** argv) {
         */
 
         getsysctl("net.inet.tcp.stats", &tcpstat, sizeof(tcpstat));
+        /*
         printf(sep);
         printf("Packets in/out: %4lu/%4lu",
                 tcpstat.tcps_rcvtotal - packets_in,
                 tcpstat.tcps_sndtotal - packets_out);
         packets_in = tcpstat.tcps_rcvtotal;
         packets_out = tcpstat.tcps_sndtotal;
+        */
 
         printf(sep);
-        printf("Bytes in/out: %6s/%6s",
+        printf("Bytes in/out: %5s/%5s",
                 hscale(number_buffer1, tcpstat.tcps_rcvbyte - bytes_in),
                 hscale(number_buffer2, tcpstat.tcps_sndbyte - bytes_out));
         bytes_in = tcpstat.tcps_rcvbyte;
