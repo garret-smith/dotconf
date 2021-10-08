@@ -1,8 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-WORKON_HOME=~/.virtualenvs
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -53,7 +51,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(colored-man-pages compleat fasd git git-flow git-prompt \
-        history-substring-search sudo virtualenvwrapper wd zsh_reload \
+        history-substring-search sudo wd zsh_reload asdf \
         zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -80,7 +78,7 @@ bindkey "[C" forward-word
 
 # Customize to your needs...
 export REPORTTIME=5
-export EDITOR=vim
+export EDITOR=nvim
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 
 HISTSIZE=SAVEHIST=10000
@@ -95,11 +93,30 @@ ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 
 zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+alias vim=nvim
 alias glggd='git log --graph --decorate --all --stat'
 
-alias ls='gnuls --color'
+alias gg='mix format; git gui citool'
+
+alias dv="setxkbmap -device `xinput | sed -n -e 's/.*AT Translated.*id=\([0-9]\+\).*/\1/p'` -layout dvorak; xmodmap ~/dotconf/caps_esc.xmod"
+alias sme="xinput set-prop 'Logitech USB Trackball' 'libinput Scroll Method Enabled' 0 0 1 ; xinput set-prop 'Logitech USB Trackball' 'libinput Button Scrolling Button' 9"
+
+alias dc='docker-compose'
+alias dcr='docker-compose run'
+alias dcs='docker-compose stop'
+alias dcdn='docker-compose down'
+alias dcud='docker-compose up -d'
+alias dlf='docker logs -f'
+alias dps='docker ps'
+
+alias getip='curl https://ipinfo.io/ip'
+
+# alias ls='gnuls --color'
 ff () { find . -name "*$**" }
 ffxg () { find . -name "*$1*" | xargs grep $2 }
 
-ccp() { export CCP_ROOT=~/work/ccp; . $CCP_ROOT/ccp.zsh; cd $CCP_ROOT }
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+source ~/hw/.envrc
 

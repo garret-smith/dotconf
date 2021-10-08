@@ -16,7 +16,9 @@ Plugin 'scrooloose/nerdtree'
 " Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
 Plugin 'gabrielelana/vim-markdown'
-Plugin 'jimenezrick/vimerl'
+" Plugin 'jimenezrick/vimerl'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
@@ -36,6 +38,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'utl.vim'
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'lifepillar/vim-solarized8'
 Plugin 'wesgibbs/vim-irblack'
 Plugin 'fxn/vim-monochrome'
 Plugin 'gregsexton/Atom'
@@ -131,12 +134,6 @@ if has("persistent_undo")
   set undofile
 endif
 
-"let g:solarized_contrast="low"
-"let g:solarized_visibility="high"
-"let g:solarized_termtrans=1
-set bg=dark
-"let g:no_bg=1
-
 if &diff
   colo atom
   set guioptions-=M
@@ -147,7 +144,8 @@ if &diff
 
   set guifont=Terminus\ (TTF)\ Medium\ 12
 else
-  colo solarized
+  set bg=light
+  colo solarized8
 endif
 
 let g:airline#extensions#tabline#enabled = 1

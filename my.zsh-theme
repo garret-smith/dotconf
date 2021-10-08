@@ -13,6 +13,14 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{%f%k%b%}]"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{%F{red}%}*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
+function hw_init {
+    if [ -z "$ENVIRONMENT" ]; then
+	echo "%{$fg[red]%}%{✖%G%}"
+    else
+        echo "%{$fg_bold[green]%}%{✔%G%}"
+    fi
+}
+
 PROMPT=' '
 #RPROMPT='%~$(git_prompt_info)$(virtualenv_info)$(get_host)'
 RPROMPT='%F{yellow}%~%f$(git_super_status)%f%b'

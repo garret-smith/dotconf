@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-wps=( ~/wallpaper/Active/* )
-feh --bg-fill ${wps[$RANDOM % ${#wps[@]}]}
+wps=( ~/wallpaper/* )
+feh --bg-center ${wps[$RANDOM % ${#wps[@]}]}
 
