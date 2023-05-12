@@ -17,8 +17,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
 Plugin 'gabrielelana/vim-markdown'
 " Plugin 'jimenezrick/vimerl'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
+" Plugin 'elixir-editors/vim-elixir'
+" Plugin 'slashmili/alchemist.vim'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
@@ -144,7 +144,7 @@ if &diff
 
   set guifont=Terminus\ (TTF)\ Medium\ 12
 else
-  set bg=light
+  set bg=dark
   colo solarized8
 endif
 
@@ -166,9 +166,9 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": [] }
 
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_cache_omnifunc = 1
+" let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_cache_omnifunc = 1
 
 let g:ackprg = 'ag --vimgrep'
 

@@ -19,7 +19,6 @@ alias lla="ls -la"
 alias lta="ls -ltra"
 
 zstyle  ':completion:*:*:vim:*:*files' ignored-patterns '*.beam'
-zstyle  ':completion:*:*:nvim:*:*files' ignored-patterns '*.beam'
 
 # Set to this to use case-sensitive completion
 #CASE_SENSITIVE="true"
@@ -50,9 +49,10 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colored-man-pages compleat fasd git git-flow git-prompt \
-        history-substring-search sudo wd zsh_reload asdf \
-        zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(compleat fasd git git-prompt \
+        sudo wd asdf zsh-autosuggestions \
+        zsh-syntax-highlighting history-substring-search
+        history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -78,7 +78,7 @@ bindkey "[C" forward-word
 
 # Customize to your needs...
 export REPORTTIME=5
-export EDITOR=nvim
+export EDITOR=vim
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 
 HISTSIZE=SAVEHIST=10000
@@ -93,7 +93,6 @@ ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 
 zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-alias vim=nvim
 alias glggd='git log --graph --decorate --all --stat'
 
 alias gg='mix format; git gui citool'
@@ -101,13 +100,16 @@ alias gg='mix format; git gui citool'
 alias dv="setxkbmap -device `xinput | sed -n -e 's/.*AT Translated.*id=\([0-9]\+\).*/\1/p'` -layout dvorak; xmodmap ~/dotconf/caps_esc.xmod"
 alias sme="xinput set-prop 'Logitech USB Trackball' 'libinput Scroll Method Enabled' 0 0 1 ; xinput set-prop 'Logitech USB Trackball' 'libinput Button Scrolling Button' 9"
 
-alias dc='docker-compose'
-alias dcr='docker-compose run'
-alias dcs='docker-compose stop'
-alias dcdn='docker-compose down'
-alias dcud='docker-compose up -d'
+alias dc='docker compose'
+alias dcr='docker compose run'
+alias dcs='docker compose stop'
+alias dcdn='docker compose down'
+alias dcud='docker compose up -d'
 alias dlf='docker logs -f'
 alias dps='docker ps'
+dltr() {
+        docker inspect --format='{{.LogPath}}' "$1" | xargs sudo truncate -c -s 0
+}
 
 alias getip='curl https://ipinfo.io/ip'
 
