@@ -23,5 +23,6 @@ function hw_init {
 
 PROMPT=' '
 #RPROMPT='%~$(git_prompt_info)$(virtualenv_info)$(get_host)'
-RPROMPT='%F{yellow}%~%f$(git_super_status)%f%b'
+#RPROMPT='%F{yellow}%~%f$(git_super_status)%f%b'
+RPROMPT='%F{yellow}%~%f$(git_prompt_info)%f%b'
 

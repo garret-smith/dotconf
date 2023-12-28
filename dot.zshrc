@@ -49,10 +49,12 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(compleat fasd git git-prompt \
+plugins=(compleat fasd git \
         sudo wd asdf zsh-autosuggestions \
         zsh-syntax-highlighting history-substring-search
         history-substring-search)
+
+# removed plugins: git-prompt
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,16 +91,15 @@ setopt histignorespace
 setopt nosharehistory
 setopt histnostore
 
-ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
-
 zstyle ':completion:*' matcher-list '' '+m:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 alias glggd='git log --graph --decorate --all --stat'
 
-alias gg='mix format; git gui citool'
+alias gg='git gui citool'
 
-alias dv="setxkbmap -device `xinput | sed -n -e 's/.*AT Translated.*id=\([0-9]\+\).*/\1/p'` -layout dvorak; xmodmap ~/dotconf/caps_esc.xmod"
-alias sme="xinput set-prop 'Logitech USB Trackball' 'libinput Scroll Method Enabled' 0 0 1 ; xinput set-prop 'Logitech USB Trackball' 'libinput Button Scrolling Button' 9"
+# alias dv="setxkbmap -device `xinput | sed -n -e 's/.*AT Translated.*id=\([0-9]\+\).*/\1/p'` -layout dvorak; xmodmap ~/dotconf/caps_esc.xmod"
+# alias sme="xinput set-prop 'Logitech USB Trackball' 'libinput Scroll Method Enabled' 0 0 1 ; xinput set-prop 'Logitech USB Trackball' 'libinput Button Scrolling Button' 9"
+gsettings set org.gnome.desktop.peripherals.trackball scroll-wheel-emulation-button 9
 
 alias dc='docker compose'
 alias dcr='docker compose run'
@@ -113,12 +114,35 @@ dltr() {
 
 alias getip='curl https://ipinfo.io/ip'
 
+alias logseq_upgrade='ls_files=(~/Downloads/Logseq-linux-*.zip(N)); if [[ $#ls_files == 1 ]]; then (echo "Upgrading to $ls_files"; cd ~/logseq; rm -Rf Logseq-linux-x64; unzip -q ~/Downloads/Logseq-linux-*.zip; rm ~/Downloads/Logseq-linux-*.zip); else echo "No download? $ls_files"; fi'
+alias zoom_upgrade='pkill zoom; cd ~/Downloads; sudo apt install ./zoom_amd64.deb; rm ./zoom_amd64.deb; popd'
+alias material_update='cd ~/ext/material-shell; git fetch -p; popd'
+
+alias zsd='sudo systemctl disable zsaservice.service; sudo systemctl disable zstunnel.service'
+alias zse='sudo systemctl enable zsaservice.service; sudo systemctl enable zstunnel.service'
+alias zsr='sudo systemctl restart zsaservice.service; sudo systemctl restart zstunnel.service'
+alias zss='sudo systemctl start zsaservice.service; sudo systemctl start zstunnel.service'
+alias zs-restart='sudo systemctl restart zsaservice zstunnel'
+
+pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
+pactl set-default-source alsa_input.usb-Blue_Microphones_Yeti_X_2112SG0153C8_888-000313110306-00.iec958-stereo
+
 # alias ls='gnuls --color'
 ff () { find . -name "*$**" }
+ffg() { find "$1" -type f -exec grep -l "$2" \{\} \; }
 ffxg () { find . -name "*$1*" | xargs grep $2 }
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-source ~/hw/.envrc
+# source ~/hw/.envrc
 
+
+# pnpm
+export PNPM_HOME="/home/garrets/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+#
