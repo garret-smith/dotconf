@@ -26,7 +26,7 @@ for more options. */
 
 #ifdef ENCODER_RESOLUTION
   #undef ENCODER_RESOLUTION
-  #define ENCODER_RESOLUTION 8
+  #define ENCODER_RESOLUTION 4
 #endif
 
 #ifdef TAPPING_TERM
