@@ -40,14 +40,13 @@ for more options. */
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_SPLIT
 
-#undef RGBLED_NUM
 #define RGBLED_NUM 70    // Number of LEDs
 #define RGBLED_SPLIT { 35, 35 } // Number of LEDs on each half
 
 #define RGBLIGHT_EFFECT_RAINBOW_MOOD
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #define RGBLIGHT_EFFECT_BREATHING
-#define RGBLIGHT_LIMIT_VAL 120
+#define RGBLIGHT_LIMIT_VAL 130
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 10
 #define RGBLIGHT_VAL_STEP 10
