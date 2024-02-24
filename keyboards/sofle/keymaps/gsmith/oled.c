@@ -39,9 +39,6 @@ static void print_status_narrow(void) {
             oled_write_ln_P(PSTR("Symb"), false);
             break;
         case 2:
-            oled_write_ln_P(PSTR("Nav"), false);
-            break;
-        case 3:
             oled_write_ln_P(PSTR("LED"), false);
             break;
         default:
@@ -52,9 +49,10 @@ static void print_status_narrow(void) {
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
-    oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
-    oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-    oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
+    oled_write_P(PSTR("Locks\n"), false);
+    oled_write_P(led_state.num_lock ? PSTR("N ") : PSTR("  "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("C ") : PSTR("  "), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("S ") : PSTR("  "), false);
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
