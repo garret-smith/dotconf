@@ -28,31 +28,36 @@ static void render_logo(void) {
 }
 
 static void print_status_narrow(void) {
-    oled_write_P(PSTR("Sofle"), false);
-    oled_write_P(PSTR("\n\n\n"), false);
+    oled_write_P(PSTR("Sofle\n\n"), false);
     // Print current mode
     switch (get_highest_layer(layer_state)) {
         case 0:
-            oled_write_ln_P(PSTR("Dvor"), false);
+            oled_write_P(PSTR("Dvor\n"), false);
             break;
         case 1:
-            oled_write_ln_P(PSTR("Symb"), false);
+            oled_write_P(PSTR("Symb\n"), false);
             break;
         case 2:
-            oled_write_ln_P(PSTR("LED"), false);
+            oled_write_P(PSTR("LED\n"), false);
             break;
         default:
             oled_write_P(PSTR("ERR\n"), false);
             break;
     }
-    oled_write_P(PSTR("\n\n"), false);
+
+    oled_write_P(PSTR("\n\nMods\n"), false);
+    uint8_t mod = get_mods() | get_oneshot_mods();
+    oled_write_P(mod & MOD_MASK_CTRL ? PSTR(" C") : PSTR(" c"), false);
+    oled_write_P(mod & MOD_MASK_ALT ? PSTR("A") : PSTR("a"), false);
+    oled_write_P(mod & MOD_MASK_SHIFT ? PSTR("S") : PSTR("s"), false);
+    oled_write_P(mod & MOD_MASK_GUI ? PSTR("G\n") : PSTR("g\n"), false);
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
-    oled_write_P(PSTR("Locks\n"), false);
-    oled_write_P(led_state.num_lock ? PSTR("N ") : PSTR("  "), false);
-    oled_write_P(led_state.caps_lock ? PSTR("C ") : PSTR("  "), false);
-    oled_write_P(led_state.scroll_lock ? PSTR("S ") : PSTR("  "), false);
+    oled_write_P(PSTR("\nLock\n"), false);
+    oled_write_P(led_state.num_lock ? PSTR(" N") : PSTR(" n"), false);
+    oled_write_P(led_state.caps_lock ? PSTR("C") : PSTR("c"), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("S\n") : PSTR("s\n"), false);
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
