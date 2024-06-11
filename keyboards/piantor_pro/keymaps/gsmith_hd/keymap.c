@@ -3,6 +3,8 @@
 
 #include QMK_KEYBOARD_H
 
+// See https://github.com/callum-oakley/qmk_firmware/tree/master/users/callum for callum-style features (one-shot mods and swappers)
+
 // Represents the four states a oneshot key can be in
 typedef enum {
     os_up_unqueued,
@@ -27,9 +29,12 @@ enum keycodes {
     OS_ALT,
     OS_GUI,
 
-    SW_WIN,  // Switch to next window         (cmd-tab)
-    SW_LANG, // Switch to next input language (ctl-spc)
+    SW_WIN,  // Switch to next window         (alt-tab)
+    SW_APP,  // Switch to next window of app  (cmd-`)
+    SW_SWP,  // Switch windows, no dialog     (alt-esc)
 };
+
+#define ALT_TAB LALT(KC_TAB)
 
 #define SP_NAV LT(NAV, KC_SPC)
 #define ENT_NAV LT(NAV, KC_ENT)
@@ -64,11 +69,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC, KC_QUOT,    KC_B,    KC_H,    KC_G,  KC_DQT,                      KC_HASH,  KC_DOT, KC_SLSH,    KC_J,   KC_X,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, SFT_T_C, CTL_T_S, ALT_T_N, GUI_T_T,    KC_K,                      KC_COMM, GUI_T_A, ALT_T_E, CTL_T_I, SFT_T_M, KC_RCTL,
+      KC_LCTL,    KC_C,    KC_S,    KC_N,    KC_T,    KC_K,                      KC_COMM,    KC_A,    KC_E,    KC_I,    KC_M, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_P,    KC_F,    KC_L,    KC_D,    KC_V,                      KC_MINS,    KC_U,    KC_O,    KC_Y,    KC_W, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,    KC_R, MO(NAV),    MO(SYM),  KC_SPC, KC_RALT
+                                          CW_TOGG,    KC_R, MO(NAV),    MO(SYM),  KC_SPC, KC_RALT
                                       //`--------------------------'  `--------------------------'
 // hands-down rhodium
   ),
@@ -77,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC, KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,                         KC_F,    KC_G,    KC_C,    KC_R,    KC_L, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, SFT_T_A, CTL_T_O,LALT_T_E, GUI_T_U,    KC_I,                         KC_D, GUI_T_H, ALT_T_T, CTL_T_N, SFT_T_S, KC_RCTL,
+      KC_LCTL,    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                         KC_D,    KC_H,    KC_T,    KC_N,    KC_S, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,                         KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, KC_RALT
+                                          CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -99,14 +104,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,  KC_TAB,   KC_AT, XXXXXXX, XXXXXXX, KC_VOLU,                       KC_DEL, KC_HOME,   KC_UP,  KC_END, XXXXXXX, KC_BSPC,
+       KC_TAB,  KC_TAB,  SW_WIN,  SW_APP,  SW_SWP, KC_VOLU,                       KC_DEL, KC_HOME,   KC_UP,  KC_END, XXXXXXX, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, OS_SHFT, OS_CTRL,  OS_ALT,  OS_GUI, KC_VOLD,                      KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT, DF(DEF), KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, KC_MRWD, KC_MFFD, KC_MPLY,                       KC_ENT, KC_PGDN, KC_PGUP, XXXXXXX, DF(DVK), KC_RSFT,
+      KC_LSFT, XXXXXXX, XXXXXXX, KC_MRWD, KC_MFFD, KC_MPLY,                       KC_ENT, KC_PGUP, XXXXXXX, KC_PGDN, DF(DVK), KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
+
   ),
     [NUM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -136,6 +142,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, SYM, NAV, NUM);
 }
+
+// Implements cmd-tab like behaviour on a single key. On first tap of trigger
+// cmdish is held and tabish is tapped -- cmdish then remains held until some
+// other key is hit or released. For example:
+//
+//     trigger, trigger, a -> cmd down, tab, tab, cmd up, a
+//     nav down, trigger, nav up -> nav down, cmd down, tab, cmd up, nav up
+//
+// This behaviour is useful for more than just cmd-tab, hence: cmdish, tabish.
+void update_swapper(
+    bool *active,
+    uint16_t cmdish,
+    uint16_t tabish,
+    uint16_t trigger,
+    uint16_t keycode,
+    keyrecord_t *record
+);
 
 // Custom oneshot mod implementation that doesn't rely on timers. If a mod is
 // used while it is held it will be unregistered on keyup as normal, otherwise
@@ -182,13 +205,72 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     }
 }
 
-bool sw_win_active = false;
-bool sw_lang_active = false;
-
 oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
 oneshot_state os_alt_state = os_up_unqueued;
 oneshot_state os_gui_state = os_up_unqueued;
+
+bool sw_win_active = false;
+bool sw_app_active = false;
+bool sw_swp_active = false;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    update_swapper(
+        &sw_win_active, KC_LALT, KC_TAB, SW_WIN,
+        keycode, record
+    );
+    update_swapper(
+        &sw_app_active, KC_LGUI, KC_GRV, SW_APP,
+        keycode, record
+    );
+    update_swapper(
+        &sw_swp_active, KC_LALT, KC_ESC, SW_SWP,
+        keycode, record
+    );
+    update_oneshot(
+        &os_shft_state, KC_LSFT, OS_SHFT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_ctrl_state, KC_LCTL, OS_CTRL,
+        keycode, record
+    );
+    update_oneshot(
+        &os_alt_state, KC_LALT, OS_ALT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_gui_state, KC_LGUI, OS_GUI,
+        keycode, record
+    );
+
+    return true;
+}
+
+void update_swapper(
+    bool *active,
+    uint16_t cmdish,
+    uint16_t tabish,
+    uint16_t trigger,
+    uint16_t keycode,
+    keyrecord_t *record
+) {
+    if (keycode == trigger) {
+        if (record->event.pressed) {
+            if (!*active) {
+                *active = true;
+                register_code(cmdish);
+            }
+            register_code(tabish);
+        } else {
+            unregister_code(tabish);
+            // Don't unregister cmdish until some other key is hit or released.
+        }
+    } else if (*active) {
+        unregister_code(cmdish);
+        *active = false;
+    }
+}
 
 void update_oneshot(
     oneshot_state *state,
@@ -244,25 +326,4 @@ void update_oneshot(
             }
         }
     }
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    update_oneshot(
-        &os_shft_state, KC_LSFT, OS_SHFT,
-        keycode, record
-    );
-    update_oneshot(
-        &os_ctrl_state, KC_LCTL, OS_CTRL,
-        keycode, record
-    );
-    update_oneshot(
-        &os_alt_state, KC_LALT, OS_ALT,
-        keycode, record
-    );
-    update_oneshot(
-        &os_gui_state, KC_LGUI, OS_GUI,
-        keycode, record
-    );
-
-    return true;
 }
