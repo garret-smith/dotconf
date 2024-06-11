@@ -37,35 +37,57 @@ enum keycodes {
 #define BS_SYM LT(SYM, KC_BSPC)
 #define BS_NAV LT(NAV, KC_BSPC)
 
+// For hands-down rhodium layout
+#define SFT_T_C LSFT_T(KC_C)
+#define CTL_T_S LCTL_T(KC_S)
+#define ALT_T_N LALT_T(KC_N)
+#define GUI_T_T LGUI_T(KC_T)
+
+#define GUI_T_A RGUI_T(KC_A)
+#define ALT_T_E RALT_T(KC_E)
+#define CTL_T_I RCTL_T(KC_I)
+#define SFT_T_M RSFT_T(KC_M)
+
+// For dvorak layout
+#define SFT_T_A LSFT_T(KC_A)
+#define CTL_T_O LCTL_T(KC_O)
+#define LALT_T_E LALT_T(KC_E)
+#define GUI_T_U LGUI_T(KC_U)
+
+#define GUI_T_H RGUI_T(KC_H)
+#define ALT_T_T RALT_T(KC_T)
+#define CTL_T_N RCTL_T(KC_N)
+#define SFT_T_S RSFT_T(KC_S)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC, KC_QUOT,    KC_B,    KC_H,    KC_G,  KC_DQT,                      KC_HASH,  KC_DOT, KC_SLSH,    KC_J,   KC_X,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_C,    KC_S,    KC_N,    KC_T,    KC_K,                      KC_COMM,    KC_A,    KC_E,    KC_I,    KC_M, KC_RCTL,
+      KC_LCTL, SFT_T_C, CTL_T_S, ALT_T_N, GUI_T_T,    KC_K,                      KC_COMM, GUI_T_A, ALT_T_E, CTL_T_I, SFT_T_M, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_P,    KC_F,    KC_L,    KC_D,    KC_V,                      KC_MINS,    KC_U,    KC_O,    KC_Y,    KC_W, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,    KC_R,  BS_NAV,    ENT_SYM,  KC_SPC, KC_RALT
+                                          KC_LGUI,    KC_R, MO(NAV),    MO(SYM),  KC_SPC, KC_RALT
                                       //`--------------------------'  `--------------------------'
 // hands-down rhodium
   ),
 
     [DVK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC, KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,                         KC_F,    KC_G,    KC_C,    KC_R,    KC_L,  KC_BSPC,
+       KC_ESC, KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,                         KC_F,    KC_G,    KC_C,    KC_R,    KC_L, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                         KC_D,    KC_H,    KC_T,    KC_N,    KC_S, KC_RCTL,
+      KC_LCTL, SFT_T_A, CTL_T_O,LALT_T_E, GUI_T_U,    KC_I,                         KC_D, GUI_T_H, ALT_T_T, CTL_T_N, SFT_T_S, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,                         KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          KC_LGUI, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
     [SYM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,  KC_TAB, KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD,                      KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC,  KC_GRV, KC_BSPC,
+       KC_ESC,  KC_ESC, KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD,                      KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC,  KC_GRV, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_MINS, KC_ASTR,  KC_EQL, KC_UNDS,  KC_DLR,                      KC_HASH,  OS_GUI,  OS_ALT, OS_CTRL, OS_SHFT, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
