@@ -14,8 +14,8 @@ typedef enum {
 } oneshot_state;
 
 enum layers {
-    DEF,
     DVK,
+    HDR,
     SYM,
     NAV,
     NUM,
@@ -67,19 +67,6 @@ enum keycodes {
 #define SFT_T_S RSFT_T(KC_S)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [DEF] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC, KC_QUOT,    KC_B,    KC_H,    KC_G,  KC_DQT,                      KC_HASH,  KC_DOT, KC_SLSH,    KC_J,   KC_X,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_C,    KC_S,    KC_N,    KC_T,    KC_K,                      KC_COMM,    KC_A,    KC_E,    KC_I,    KC_M, KC_RCTL,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_P,    KC_F,    KC_L,    KC_D,    KC_V,                      KC_MINS,    KC_U,    KC_O,    KC_Y,    KC_W, KC_RSFT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CW_TOGG, SFT_T_R, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
-                                      //`--------------------------'  `--------------------------'
-// hands-down rhodium (incomplete: need z, q, ...)
-  ),
-
     [DVK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC, KC_QUOT, KC_COMM,  KC_DOT,    KC_P,    KC_Y,                         KC_F,    KC_G,    KC_C,    KC_R,    KC_L, KC_BSPC,
@@ -92,15 +79,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
+    [HDR] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_ESC, KC_QUOT,    KC_B,    KC_H,    KC_G,  KC_DQT,                      KC_HASH,  KC_DOT, KC_SLSH,    KC_J,   KC_X,  KC_BSPC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LCTL,    KC_C,    KC_S,    KC_N,    KC_T,    KC_K,                      KC_COMM,    KC_A,    KC_E,    KC_I,    KC_M, KC_RCTL,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,    KC_P,    KC_F,    KC_L,    KC_D,    KC_V,                      KC_MINS,    KC_U,    KC_O,    KC_Y,    KC_W, KC_RSFT,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          CW_TOGG, SFT_T_R, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
+                                      //`--------------------------'  `--------------------------'
+// hands-down rhodium (incomplete: need z, q, ...)
+  ),
+
     [SYM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,  KC_ESC, KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD,                      KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC,  KC_GRV, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_MINS, KC_ASTR,  KC_EQL, KC_UNDS,  KC_DLR,                      KC_HASH, KC_LABK, KC_RABK, KC_QUES, KC_EXLM, KC_RCTL,
+      KC_LCTL, KC_MINS, KC_ASTR,  KC_EQL, KC_UNDS,  KC_DLR,                      KC_HASH,  OS_GUI,  OS_ALT, OS_CTRL, KC_BSLS, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, KC_PLUS, KC_PIPE,   KC_AT, KC_SLSH, KC_PERC,                      XXXXXXX, KC_BSLS, KC_AMPR, XXXXXXX, XXXXXXX, KC_RSFT,
+      KC_LSFT, KC_PLUS, KC_PIPE,   KC_AT, KC_SLSH, KC_LABK,                      KC_RABK, KC_PERC, KC_AMPR, KC_QUES, KC_EXLM, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, XXXXXXX, XXXXXXX, KC_MRWD, KC_MFFD, KC_MPLY,                       KC_ENT, KC_PGUP, XXXXXXX, KC_PGDN, XXXXXXX, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,   KC_F7,   KC_F5,   KC_F3,   KC_F1,   KC_F9,                        KC_F8,  KC_F10,   KC_F2,   KC_F4,   KC_F6, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -132,11 +132,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(DEF), XXXXXXX,
+      XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(HDR), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(DVK), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,    _______, _______, _______
+                                          CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
   )
 };
