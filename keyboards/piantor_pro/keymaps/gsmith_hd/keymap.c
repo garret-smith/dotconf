@@ -96,9 +96,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_ESC,  KC_ESC, KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD,                      KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC,  KC_GRV, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_MINS, KC_ASTR,  KC_EQL, KC_UNDS,  KC_DLR,                      KC_HASH,  OS_GUI,  OS_ALT, OS_CTRL, KC_BSLS, KC_RCTL,
+      KC_LCTL, KC_MINS, KC_ASTR,  KC_EQL, KC_UNDS,  KC_DLR,                      KC_HASH,  OS_GUI,  OS_ALT, OS_CTRL, OS_SHFT, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, KC_PLUS, KC_PIPE,   KC_AT, KC_SLSH, KC_LABK,                      KC_RABK, KC_PERC, KC_AMPR, KC_QUES, KC_EXLM, KC_RSFT,
+      KC_LSFT, KC_PLUS, KC_BSLS,   KC_AT, KC_SLSH, KC_LABK,                      KC_RABK, KC_PERC, KC_AMPR, KC_QUES, KC_EXLM, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
