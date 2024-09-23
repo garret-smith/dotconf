@@ -115,7 +115,7 @@ dltr() {
 alias getip='curl https://ipinfo.io/ip'
 
 alias logseq_upgrade='ls_files=(~/Downloads/Logseq-linux-*.zip(N)); if [[ $#ls_files == 1 ]]; then (echo "Upgrading to $ls_files"; cd ~/logseq; rm -Rf Logseq-linux-x64; unzip -q ~/Downloads/Logseq-linux-*.zip; rm ~/Downloads/Logseq-linux-*.zip); else echo "No download? $ls_files"; fi'
-alias zoom_upgrade='pkill zoom; cd ~/Downloads; sudo apt install ./zoom_amd64.deb; rm ./zoom_amd64.deb; popd'
+alias zoom_upgrade='pkill zoom; cd ~/Downloads; wget https://zoom.us/client/latest/zoom_amd64.deb; sudo apt install ./zoom_amd64.deb; rm ./zoom_amd64.deb; popd'
 alias material_update='cd ~/ext/material-shell; git fetch -p; popd'
 
 alias zsd='sudo systemctl disable zsaservice.service; sudo systemctl disable zstunnel.service'
@@ -124,7 +124,8 @@ alias zsr='sudo systemctl restart zsaservice.service; sudo systemctl restart zst
 alias zss='sudo systemctl start zsaservice.service; sudo systemctl start zstunnel.service'
 alias zs-restart='sudo systemctl restart zsaservice zstunnel'
 
-pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
+#pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
+pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo
 pactl set-default-source alsa_input.usb-Blue_Microphones_Yeti_X_2112SG0153C8_888-000313110306-00.iec958-stereo
 
 # alias ls='gnuls --color'
@@ -145,4 +146,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-#
+
+export PATH="/home/garrets/bin:$PATH:/home/garrets/.local/bin:/home/garrets/.akeyless/bin"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_QPA_PLATFORM=wayland
+# export GDK_BACKEND=wayland
+# export MOZ_ENABLE_WAYLAND=1
+

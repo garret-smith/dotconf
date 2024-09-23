@@ -15,7 +15,7 @@ typedef enum {
 
 enum layers {
     DVK,
-    HDR,
+    BKL,
     SYM,
     NAV,
     NUM,
@@ -42,20 +42,7 @@ enum keycodes {
 #define BS_SYM LT(SYM, KC_BSPC)
 #define BS_NAV LT(NAV, KC_BSPC)
 
-// For hands-down rhodium layout
-#define SFT_T_C LSFT_T(KC_C)
-#define CTL_T_S LCTL_T(KC_S)
-#define ALT_T_N LALT_T(KC_N)
-#define GUI_T_T LGUI_T(KC_T)
-
-#define GUI_T_A RGUI_T(KC_A)
-#define ALT_T_E RALT_T(KC_E)
-#define CTL_T_I RCTL_T(KC_I)
-#define SFT_T_M RSFT_T(KC_M)
-
-#define SFT_T_R LSFT_T(KC_R)
-
-// For dvorak layout
+// For HRMs
 #define SFT_T_A LSFT_T(KC_A)
 #define CTL_T_O LCTL_T(KC_O)
 #define LALT_T_E LALT_T(KC_E)
@@ -79,17 +66,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
-    [HDR] = LAYOUT_split_3x6_3(
+    [BKL] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC, KC_QUOT,    KC_B,    KC_H,    KC_G,  KC_DQT,                      KC_HASH,  KC_DOT, KC_SLSH,    KC_J,   KC_X,  KC_BSPC,
+       KC_ESC,    KC_Q,    KC_H,    KC_O,    KC_U, KC_COMM,                         KC_G,    KC_L,    KC_R,    KC_F,    KC_B, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_C,    KC_S,    KC_N,    KC_T,    KC_K,                      KC_COMM,    KC_A,    KC_E,    KC_I,    KC_M, KC_RCTL,
+      KC_LCTL,    KC_J,    KC_I,    KC_E,    KC_A,    KC_Y,                         KC_D,    KC_T,    KC_S,    KC_N,    KC_P, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_P,    KC_F,    KC_L,    KC_D,    KC_V,                      KC_MINS,    KC_U,    KC_O,    KC_Y,    KC_W, KC_RSFT,
+      KC_LSFT,    KC_X,    KC_K, KC_QUOT,  KC_DOT, KC_SCLN,                         KC_V,    KC_M,    KC_C,    KC_W,    KC_Z, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          CW_TOGG, SFT_T_R, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
+                                          CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
-// hands-down rhodium (incomplete: need z, q, ...)
+// BEAKL-43 (ish) - create a SYM_BEAKL and NAV_BEAKL layer for better symbols and navigation
   ),
 
     [SYM] = LAYOUT_split_3x6_3(
@@ -106,11 +93,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,  KC_TAB,  SW_WIN,  SW_APP,  SW_SWP, KC_VOLU,                       KC_DEL, KC_HOME,   KC_UP,  KC_END,  KC_INS, KC_BSPC,
+       KC_TAB,  KC_TAB,  SW_WIN,  SW_APP,  SW_SWP, KC_VOLU,                       KC_DEL, KC_HOME,   KC_UP,  KC_END,  KC_TAB, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, OS_SHFT, OS_CTRL,  OS_ALT,  OS_GUI, KC_VOLD,                      KC_BSPC, KC_LEFT, KC_DOWN, KC_RGHT, KC_LGUI, KC_RCTL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, KC_MRWD, KC_MFFD, KC_MPLY,                       KC_ENT, KC_PGUP, XXXXXXX, KC_PGDN, XXXXXXX, KC_RSFT,
+      KC_LSFT, XXXXXXX, XXXXXXX, KC_MRWD, KC_MFFD, KC_MPLY,                       KC_ENT, KC_PGUP, XXXXXXX, KC_PGDN,  KC_INS, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           CW_TOGG, KC_LSFT, MO(NAV),    MO(SYM),  KC_SPC, MO(EXT)
                                       //`--------------------------'  `--------------------------'
@@ -132,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       QK_BOOT, XXXXXXX, KC_PAUS, KC_SCRL, KC_PSCR, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(HDR), XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(BKL), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(DVK), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
