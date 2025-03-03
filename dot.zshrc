@@ -116,6 +116,7 @@ alias getip='curl https://ipinfo.io/ip'
 
 alias logseq_upgrade='ls_files=(~/Downloads/Logseq-linux-*.zip(N)); if [[ $#ls_files == 1 ]]; then (echo "Upgrading to $ls_files"; cd ~/logseq; rm -Rf Logseq-linux-x64; unzip -q ~/Downloads/Logseq-linux-*.zip; rm ~/Downloads/Logseq-linux-*.zip); else echo "No download? $ls_files"; fi'
 alias zoom_upgrade='pkill zoom; cd ~/Downloads; wget https://zoom.us/client/latest/zoom_amd64.deb; sudo apt install ./zoom_amd64.deb; rm ./zoom_amd64.deb; popd'
+alias dbeaver_upgrade='cd ~/Downloads; wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb; sudo apt install ./dbeaver-ce_latest_amd64.deb; rm ./dbeaver-ce_latest_amd64.deb; popd'
 alias material_update='cd ~/ext/material-shell; git fetch -p; popd'
 
 alias zsd='sudo systemctl disable zsaservice.service; sudo systemctl disable zstunnel.service'
@@ -125,8 +126,8 @@ alias zss='sudo systemctl start zsaservice.service; sudo systemctl start zstunne
 alias zs-restart='sudo systemctl restart zsaservice zstunnel'
 
 #pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
-pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo
-pactl set-default-source alsa_input.usb-Blue_Microphones_Yeti_X_2112SG0153C8_888-000313110306-00.iec958-stereo
+# pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo
+# pactl set-default-source alsa_input.usb-Blue_Microphones_Yeti_X_2112SG0153C8_888-000313110306-00.iec958-stereo
 
 # alias ls='gnuls --color'
 ff () { find . -name "*$**" }

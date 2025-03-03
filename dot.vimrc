@@ -17,7 +17,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
 Plugin 'gabrielelana/vim-markdown'
 " Plugin 'jimenezrick/vimerl'
-" Plugin 'elixir-editors/vim-elixir'
+Plugin 'elixir-editors/vim-elixir'
 " Plugin 'slashmili/alchemist.vim'
 Plugin 'gregsexton/gitv'
 Plugin 'mbbill/undotree'
@@ -43,6 +43,8 @@ Plugin 'wesgibbs/vim-irblack'
 Plugin 'fxn/vim-monochrome'
 Plugin 'gregsexton/Atom'
 Plugin 'gregsexton/Muon'
+
+packadd lsp
 
 call vundle#end()
 
@@ -135,7 +137,7 @@ if has("persistent_undo")
 endif
 
 if &diff
-  colo atom
+  colo evening
   set guioptions-=M
   set guioptions-=m
   set guioptions-=T

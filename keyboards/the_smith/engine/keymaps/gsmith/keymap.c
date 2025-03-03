@@ -53,6 +53,14 @@ enum keycodes {
 #define CTL_T_N RCTL_T(KC_N)
 #define SFT_T_S RSFT_T(KC_S)
 
+#define LT_OUT MO(NAV)
+#define LT_MID KC_LSFT
+#define LT_INR CW_TOGG
+
+#define RT_INR MO(EXT)
+#define RT_MID KC_SPC
+#define RT_OUT MO(SYM)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DVK] = LAYOUT_split_3x5_3(
   //,--------------------------------------------.                    ,--------------------------------------------.
@@ -62,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
       KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X,                         KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,
   //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                 MO(NAV), KC_LSFT, CW_TOGG,    MO(EXT),  KC_SPC, ENT_SYM
+                                  LT_OUT,  LT_MID,  LT_INR,     RT_INR,  RT_MID,  RT_OUT
                              //`--------------------------'  `--------------------------'
   ),
 
@@ -74,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
          KC_X,    KC_K, KC_QUOT,  KC_DOT, KC_SCLN,                         KC_V,    KC_M,    KC_C,    KC_W,    KC_Z,
   //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                 MO(NAV), KC_LSFT, CW_TOGG,    MO(EXT),  KC_SPC, ENT_SYM
+                                  LT_OUT,  LT_MID,  LT_INR,     RT_INR,  RT_MID,  RT_OUT
                              //`--------------------------'  `--------------------------'
 // BEAKL-43 (ish) - create a SYM_BEAKL and NAV_BEAKL layer for better symbols and navigation
   ),
@@ -87,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
       KC_PLUS, KC_BSLS,   KC_AT, KC_SLSH, KC_LABK,                      KC_RABK, KC_PERC, KC_AMPR, KC_QUES, KC_EXLM,
   //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                 MO(NAV), KC_LSFT, CW_TOGG,    MO(EXT),  KC_SPC, ENT_SYM
+                                  LT_OUT,  LT_MID,  LT_INR,     RT_INR,  RT_MID,  RT_OUT
                              //`--------------------------'  `--------------------------'
   ),
 
@@ -99,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
       XXXXXXX, XXXXXXX, KC_MRWD, KC_MFFD, KC_MPLY,                       KC_ENT, KC_PGUP, XXXXXXX, KC_PGDN,  KC_INS,
   //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                 MO(NAV), KC_LSFT, CW_TOGG,    MO(EXT),  KC_SPC, ENT_SYM
+                                  LT_OUT,  LT_MID,  LT_INR,     RT_INR,  RT_MID,  RT_OUT
                              //`--------------------------'  `--------------------------'
 
   ),
@@ -111,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
         KC_F7,   KC_F5,   KC_F3,   KC_F1,   KC_F9,                        KC_F8,  KC_F10,   KC_F2,   KC_F4,   KC_F6,
   //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                 MO(NAV), KC_LSFT, CW_TOGG,    MO(EXT),  KC_SPC, ENT_SYM
+                                  LT_OUT,  LT_MID,  LT_INR,     RT_INR,  RT_MID,  RT_OUT
                              //`--------------------------'  `--------------------------'
   ),
 
@@ -123,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------|
       XXXXXXX, XXXXXXX, XXXXXXX, UG_NEXT, UG_TOGG,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(DVK),
   //|--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                 MO(NAV), KC_LSFT, CW_TOGG,    MO(EXT),  KC_SPC, ENT_SYM
+                                  LT_OUT,  LT_MID,  LT_INR,     RT_INR,  RT_MID,  RT_OUT
                              //`--------------------------'  `--------------------------'
   )
 };
@@ -171,8 +179,8 @@ bool is_oneshot_ignored_key(uint16_t keycode);
 
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-    case MO(SYM):
-    case MO(NAV):
+    case LT_INR:
+    case RT_INR:
         return true;
     default:
         return false;
@@ -181,6 +189,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
+    case ENT_SYM:
     case MO(SYM):
     case MO(NAV):
     case KC_LSFT:
